@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#fff"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        android:id="@+id/toolbar_outside"
+        layout="@layout/toolbar" />
+    <View
+        android:visibility="gone"
+        android:id="@+id/payment_back_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#7fc9c8c8"
+
+        ></View>
+
+
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar_outside"
+        android:fillViewport="true"
+        >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.CardView
+                    app:cardElevation="8dp"
+
+                    app:cardUseCompatPadding="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <View
+                        android:visibility="gone"
+                        android:id="@+id/payment_cardone_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#7fc9c8c8"
+
+                        ></View>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:textColor="#000"
+                            android:text="PAYMENTS DETAILS"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+
+                        <LinearLayout
+                            android:weightSum="2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+
+
+                            <LinearLayout
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:padding="12dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:textColor="#000"
+                                    android:textSize="12sp"
+                                    android:text="Parking Slot Number:"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
+
+                                <TextView
+                                    android:textColor="#000"
+                                    android:textSize="12sp"
+                                    android:text="Invoice:"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
+
+
+                                <TextView
+                                    android:textSize="12sp"
+                                    android:textColor="#000"
+                                    android:layout_marginTop="5dp"
+                                    android:text="Name:"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
+                                <TextView
+                                    android:textSize="12sp"
+                                    android:layout_marginTop="5dp"
+                                    android:textColor="#000"
+
+                                    android:text="Mobile:"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
+                                <TextView
+                                    android:textSize="12sp"
+                                    android:text="Apartment:"
+                                    android:layout_marginTop="5dp"
+                                    android:textColor="#000"
+
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
+
+
+
+
+                                <TextView
+                                    android:layout_marginTop="5dp"
+                                    android:textColor="#000"
+                                    android:textSize="12sp"
+                                    android:text="Block:"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
+
+
+
+
+                                <TextView
+                                    android:textColor="#000"
+                                    android:layout_marginTop="5dp"
+                                    android:textSize="12sp"
+                                    android:text="Flat:"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
+
+                                <TextView
+                                    android:textColor="#000"
+                                    android:layout_marginTop="5dp"
+                                    android:textSize="12sp"
+                                    android:text="Parking:"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
+
+                                <TextView
+                                    android:textColor="#000"
+                                    android:layout_marginTop="5dp"
+                                    android:textSize="12sp"
+                                    android:text="Email:"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
+
+
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:padding="12dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:textSize="12sp"
+                                    android:text="17926"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
+
+
+                                <TextView
+                                    android:layout_marginTop="5dp"
+                                    android:textSize="12sp"
+                                    android:text="John Smith"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
+
+
+                                <TextView
+                                    android:textSize="12sp"
+                                    android:layout_marginTop="5dp"
+                                    android:text="9999990000"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
+                                <TextView
+                                    android:textSize="12sp"
+                                    android:layout_marginTop="5dp"
+
+                                    android:hint="Swan Lakes"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
+                                <TextView
+                                    android:textSize="12sp"
+                                    android:hint="Tower 1"
+                                    android:layout_marginTop="5dp"
+
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
+
+
+
+
+                                <TextView
+                                    android:layout_marginTop="5dp"
+
+                                    android:textSize="12sp"
+                                    android:text="1013"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
+
+
+                                <TextView
+                                    android:layout_marginTop="5dp"
+
+                                    android:textSize="12sp"
+                                    android:text="81"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
+
+
+                                <TextView
+                                    android:layout_marginTop="5dp"
+
+                                    android:textSize="12sp"
+                                    android:text="81"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
+
+
+                                <TextView
+                                    android:layout_marginTop="5dp"
+
+                                    android:textSize="12sp"
+                                    android:text="81"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
+
+
+
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    app:cardElevation="8dp"
+
+                    app:cardUseCompatPadding="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <View
+                        android:visibility="gone"
+                        android:id="@+id/payment_cardtwo_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#7fc9c8c8"
+
+                        ></View>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="15dp"
+                            android:textColor="#000"
+                            android:text="AMOUNT"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <LinearLayout
+                            android:weightSum="2"
+                            android:padding="5dp"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:textColor="#000"
+                                android:layout_marginLeft="12dp"
+                                android:layout_weight="1"
+                                android:textSize="12sp"
+                                android:text="Parking Slot Number:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:layout_weight="1"
+                                android:textSize="12sp"
+                                android:hint="Name:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:weightSum="2"
+                            android:padding="5dp"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_marginLeft="12dp"
+                                android:layout_weight="1"
+                                android:textSize="12sp"
+                                android:textColor="#000"
+                                android:text="Mobile:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:layout_weight="1"
+                                android:textSize="12sp"
+                                android:hint="Apartment:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#b3b2b2"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            />
+
+                        <LinearLayout
+                            android:weightSum="2"
+                            android:padding="5dp"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_weight="1"
+                                android:textSize="12sp"
+                                android:layout_marginLeft="12dp"
+                                android:textColor="#000"
+                                android:text="Total:"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+
+
+                            <TextView
+                                android:layout_weight="1"
+                                android:textSize="12sp"
+
+                                android:hint="$100"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+
+
+                        </LinearLayout>
+
+
+                        <View
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#b3b2b2"
+                            android:layout_marginBottom="10dp"
+                            />
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+                <LinearLayout
+                    android:layout_gravity="right"
+                    android:gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical"
+
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:visibility="gone"
+                        android:id="@+id/payment_download"
+                        android:src="@mipmap/download"
+                        android:layout_marginBottom="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <ImageView
+                        android:visibility="gone"
+                        android:id="@+id/payment_share"
+                        android:layout_marginBottom="5dp"
+                        android:src="@mipmap/share"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+
+
+                    <android.support.design.widget.FloatingActionButton
+                        app:fabSize="normal"
+                        android:id="@+id/payment_list_fab"
+                        app:backgroundTint="#039be5"
+                        android:src="@mipmap/sort_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <Button
+                android:layout_alignParentBottom="true"
+                android:id="@+id/payment_done"
+                android:textColor="#fff"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="45dp"
+                android:text="DONE"
+                android:background="@drawable/curver_btn"
+                android:layout_gravity="bottom"
+                android:layout_width="match_parent"
+                android:layout_height="35dp" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

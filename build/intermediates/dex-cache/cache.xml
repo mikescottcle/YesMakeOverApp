@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Users\Faiz\.android\build-cache\440f958f3c5dd52865597c5c8d94d67c78a681be\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="8df0e365e40beb151bc42dee20817721a6cab7b0">
+        <dex dex="E:\New folder\CarMakeOver\app\build\intermediates\pre-dexed\debug\classes_3eb026ff2943926fd77c43aa37b60edf3330b82b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Faiz\.android\build-cache\f02b81888f6b59e9f69bc92e2239abc6a88a8d13\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="9935891f23923f39d002087085d9696568a9f657">
+        <dex dex="E:\New folder\CarMakeOver\app\build\intermediates\pre-dexed\debug\classes_9323a85af9fa5d962d95144b5dd47cbd215aedc9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Faiz\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="E:\New folder\CarMakeOver\app\build\intermediates\pre-dexed\debug\constraint-layout-solver-1.0.2_a2781873834e996494b96c39f916639f3596f992.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Faiz\.android\build-cache\aac004185a2b59c6f939a27a3d73c7cef8ced3cc\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="c4f45092eee6cdf1a5dbd597b2b6819be652ce2e">
+        <dex dex="E:\New folder\CarMakeOver\app\build\intermediates\pre-dexed\debug\classes_b88e4755030bf393bfe33c97cbbca8016f4b6eea.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Faiz\.android\build-cache\fc076c31ef3feffe396455f19f1fdb6b7adeb493\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="cddcd0fb93bc70e27325f2f715b2710332004ebb">
+        <dex dex="E:\New folder\CarMakeOver\app\build\intermediates\pre-dexed\debug\classes_549edcb81bbc887a028709194512b88faedcd70b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Faiz\.android\build-cache\ac97ab35d2fdf02a5529d6e6f41fe721b791b19e\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="18d31838aa4fcc768a8a0516e22cc13b94655d89">
+        <dex dex="E:\New folder\CarMakeOver\app\build\intermediates\pre-dexed\debug\classes_608670fa8fc3648df4d14d0a31af91949e0ead63.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Faiz\.android\build-cache\d26e649debc5f87140c07dc576cc4741815628e2\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="47471eb19df288158b00b8d9cfa41bce7373f5cc">
+        <dex dex="E:\New folder\CarMakeOver\app\build\intermediates\pre-dexed\debug\classes_32a14872ddb885c793bedf602cf3f254a645fe03.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Faiz\.android\build-cache\eb193d915b8e8195fe9714fad5ea56c1f379c9b6\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="88246166d5afb106f532f6e6deae683c66b42c89">
+        <dex dex="E:\New folder\CarMakeOver\app\build\intermediates\pre-dexed\debug\classes_29918aeffe727de03cf9619eabb9beb08fee7ab8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Faiz\.android\build-cache\ba2e20a137b5a2725d2c6e89df8a82cbac6719ad\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="fcd01fd11233459f546c437ec927e9b61bf7caf1">
+        <dex dex="E:\New folder\CarMakeOver\app\build\intermediates\pre-dexed\debug\classes_99bfea293c4348495cc49d304f48282f9fa00417.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Faiz\.android\build-cache\9c5a8fa3a7927fc95279810c6ddcd04330502dc9\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="952944218ecedea1554a513dec0c14d570642843">
+        <dex dex="E:\New folder\CarMakeOver\app\build\intermediates\pre-dexed\debug\classes_4fcc10e516bbe5128d1b77b573dddbc48bb9dc40.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\New folder\CarMakeOver\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="eb6caad4d1762ce6c721dde5b96af483cb6d2a59">
+        <dex dex="E:\New folder\CarMakeOver\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_a260f84aa43d9bd99295b8164b0a7cb47f6cb4fe\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Faiz\.android\build-cache\db79cc570b417e6179e40e02ec7ab29982192ce7\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="6a022bf00ccd0948a8180c505e8e458bbddd43a6">
+        <dex dex="E:\New folder\CarMakeOver\app\build\intermediates\pre-dexed\debug\classes_c3630ddb8b68638e30afdfcb9e2cd4c17847f1e0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Faiz\.android\build-cache\a93784ab2c2cfaae9c39d0d8414a713d70e45114\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="E:\New folder\CarMakeOver\app\build\intermediates\pre-dexed\debug\classes_93f51fb38f66e38622af38217bbf870d764750d2.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\New folder\CarMakeOver\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="E:\New folder\CarMakeOver\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_b1d06cb8f5e9f9b9c3dc6dfad37c298931119e93\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Faiz\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\26.0.0-alpha1\support-annotations-26.0.0-alpha1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="023ee503b631f69511e335a061ea008f8da60f40">
+        <dex dex="E:\New folder\CarMakeOver\app\build\intermediates\pre-dexed\debug\support-annotations-26.0.0-alpha1_113a1a0e1240f39732fb74d5f408c626e263d4d7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Faiz\.android\build-cache\920a1d781eb58e3c408611d3f9f685ce3f938e65\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="E:\New folder\CarMakeOver\app\build\intermediates\pre-dexed\debug\classes_68c9bed1a47fa16edd69a57a03c70805969d50f5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Faiz\.android\build-cache\caa5abc84a247abc7cd799d673b3075ee9ee9dbd\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="4b868b833b0887aa48c4e581558eef4f1196f6a2">
+        <dex dex="E:\New folder\CarMakeOver\app\build\intermediates\pre-dexed\debug\classes_af4308a3c3244a24ad49b9e571992bb91fcee2f6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Faiz\.android\build-cache\e9b1dcb7204b25cc76f874f819afc53528839cd0\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="e176fd06c2ad5b50a2f5cb4de6000a83a7cb48f5">
+        <dex dex="E:\New folder\CarMakeOver\app\build\intermediates\pre-dexed\debug\classes_3981e0091f221cb9bb1a402283b35b41680b8103.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Faiz\.android\build-cache\8042401dffdd4c92298971c1560624b4baafb02b\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="2e92aa0163544a804a0b34f169ca61801770839a">
+        <dex dex="E:\New folder\CarMakeOver\app\build\intermediates\pre-dexed\debug\classes_6bc4b734705867f86b540e88689bc74aa17b143f.jar" />
+    </item>
+
+</items>
