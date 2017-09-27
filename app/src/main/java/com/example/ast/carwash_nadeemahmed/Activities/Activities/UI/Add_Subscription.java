@@ -7,8 +7,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.MainActivity;
 import com.example.ast.carwash_nadeemahmed.R;
 
 /**
@@ -18,6 +20,7 @@ import com.example.ast.carwash_nadeemahmed.R;
 public class Add_Subscription extends android.support.v4.app.Fragment {
 
     public static TextView ActionBartitle;
+    public ImageView back_arrow;
 
     @Nullable
     @Override
@@ -31,7 +34,14 @@ public class Add_Subscription extends android.support.v4.app.Fragment {
 
         ActionBartitle = (TextView) toolbar.findViewById(R.id.main_appbar_textView);
         ActionBartitle.setText("Add Subscription");
+        back_arrow = (ImageView) toolbar.findViewById(R.id.back_image);
 
+        back_arrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.getInstance().onBackPressed();
+            }
+        });
         return view;
     }
 }

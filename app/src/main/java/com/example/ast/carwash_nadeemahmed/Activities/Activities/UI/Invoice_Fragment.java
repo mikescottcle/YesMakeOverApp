@@ -11,9 +11,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.MainActivity;
 import com.example.ast.carwash_nadeemahmed.R;
 
 /**
@@ -22,11 +25,15 @@ import com.example.ast.carwash_nadeemahmed.R;
 
 public class Invoice_Fragment extends android.support.v4.app.Fragment {
 
-    public FloatingActionButton floatingActionButton;
+    public ImageButton floatingActionButton;
     public ImageView floatingMenuItem1;
     public ImageView floatingMenuItem2;
     public View clist_Back_view,invoice_cardone_view,invoice_cardtwo_view;
+
     public static TextView ActionBartitle;
+    public Button update_payment;
+    public ImageView back_arrow;
+
 
     @Nullable
     @Override
@@ -43,7 +50,7 @@ public class Invoice_Fragment extends android.support.v4.app.Fragment {
         clist_Back_view = (View)view.findViewById(R.id.invoice_back_view);
         invoice_cardone_view = (View)view.findViewById(R.id.invoice_cardone_view);
         invoice_cardtwo_view = (View)view.findViewById(R.id.invoice_cardtwo_view);
-        floatingActionButton = (FloatingActionButton)view.findViewById(R.id.invoice_list_fab);
+        floatingActionButton = (ImageButton)view.findViewById(R.id.invoice_list_fab);
         floatingMenuItem1 = (ImageView)view.findViewById(R.id.invoice_share);
         floatingMenuItem2 = (ImageView)view.findViewById(R.id.invoice_download);
 
@@ -54,6 +61,14 @@ public class Invoice_Fragment extends android.support.v4.app.Fragment {
             }
         });
 
+        back_arrow = (ImageView) toolbar.findViewById(R.id.back_image);
+
+        back_arrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.getInstance().onBackPressed();
+            }
+        });
         return view;
     }
     public void customAnimations() {
@@ -96,6 +111,7 @@ public class Invoice_Fragment extends android.support.v4.app.Fragment {
                 clist_Back_view.setVisibility(View.VISIBLE);
                 invoice_cardone_view.setVisibility(View.VISIBLE);
                 invoice_cardtwo_view.setVisibility(View.VISIBLE);
+                floatingActionButton.setBackgroundResource(R.mipmap.closed);
             }
 
             @Override
@@ -152,6 +168,7 @@ public class Invoice_Fragment extends android.support.v4.app.Fragment {
                 clist_Back_view.setVisibility(View.GONE);
                 invoice_cardone_view.setVisibility(View.GONE);
                 invoice_cardtwo_view.setVisibility(View.GONE);
+                floatingActionButton.setBackgroundResource(R.mipmap.sort_btn);
             }
 
             @Override

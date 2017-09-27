@@ -11,9 +11,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.MainActivity;
 import com.example.ast.carwash_nadeemahmed.R;
 
 /**
@@ -22,11 +25,14 @@ import com.example.ast.carwash_nadeemahmed.R;
 
 public class Payment_Successful extends android.support.v4.app.Fragment {
 
-    public FloatingActionButton floatingActionButton;
+    public ImageButton floatingActionButton;
     public ImageView floatingMenuItem1;
     public ImageView floatingMenuItem2;
     public View clist_Back_view,payment_cardone_view,payment_cardtwo_view;
     public static TextView ActionBartitle;
+    public Button update_payment;
+    public ImageView back_arrow;
+
 
     @Nullable
     @Override
@@ -42,10 +48,17 @@ public class Payment_Successful extends android.support.v4.app.Fragment {
         clist_Back_view = (View)view.findViewById(R.id.payment_back_view);
         payment_cardone_view = (View)view.findViewById(R.id.payment_cardone_view);
         payment_cardtwo_view = (View)view.findViewById(R.id.payment_cardtwo_view);
-        floatingActionButton = (FloatingActionButton)view.findViewById(R.id.payment_list_fab);
+        floatingActionButton = (ImageButton)view.findViewById(R.id.payment_list_fab);
         floatingMenuItem1 = (ImageView)view.findViewById(R.id.payment_share);
         floatingMenuItem2 = (ImageView)view.findViewById(R.id.payment_download);
+        back_arrow = (ImageView) toolbar.findViewById(R.id.back_image);
 
+        back_arrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.getInstance().onBackPressed();
+            }
+        });
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -11,9 +11,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.MainActivity;
 import com.example.ast.carwash_nadeemahmed.R;
 
 /**
@@ -22,11 +24,12 @@ import com.example.ast.carwash_nadeemahmed.R;
 
 public class CustomerList_Fragment extends android.support.v4.app.Fragment {
 
-    public FloatingActionButton floatingActionButton;
+    public ImageButton floatingActionButton;
     public ImageView floatingMenuItem1;
     public ImageView floatingMenuItem2;
     public View clist_Back_view;
     public static TextView ActionBartitle;
+    public ImageView back_arrow;
 
     @Nullable
     @Override
@@ -42,12 +45,21 @@ public class CustomerList_Fragment extends android.support.v4.app.Fragment {
         ActionBartitle.setText("Customers");
 
         clist_Back_view = (View)view.findViewById(R.id.clist_back_view);
-        floatingActionButton = (FloatingActionButton)view.findViewById(R.id.customer_list_sort);
+        floatingActionButton = (ImageButton)view.findViewById(R.id.customer_list_sort);
         floatingMenuItem1 = (ImageView)view.findViewById(R.id.floatingMenuItem1);
         floatingMenuItem2 = (ImageView)view.findViewById(R.id.floatingMenuItem2);
 
 
 
+        back_arrow = (ImageView)toolbar.findViewById(R.id.back_image);
+
+        back_arrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.getInstance().onBackPressed();
+
+            }
+        });
 
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -119,6 +131,8 @@ public class CustomerList_Fragment extends android.support.v4.app.Fragment {
                 floatingMenuItem1.setVisibility(View.VISIBLE);
                 floatingMenuItem2.setVisibility(View.VISIBLE);
                 clist_Back_view.setVisibility(View.VISIBLE);
+                floatingActionButton.setBackgroundResource(R.mipmap.closed);
+
             }
 
             @Override
@@ -173,6 +187,7 @@ public class CustomerList_Fragment extends android.support.v4.app.Fragment {
                 floatingMenuItem1.setVisibility(View.GONE);
                 floatingMenuItem2.setVisibility(View.GONE);
                 clist_Back_view.setVisibility(View.GONE);
+                floatingActionButton.setBackgroundResource(R.mipmap.sort_btn);
             }
 
             @Override

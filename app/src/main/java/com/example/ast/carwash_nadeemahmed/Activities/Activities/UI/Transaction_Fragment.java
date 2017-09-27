@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.MainActivity;
@@ -24,7 +26,7 @@ public class Transaction_Fragment extends android.support.v4.app.Fragment {
 
 
     public static TextView ActionBartitle;
-
+    public ImageView back_arrow;
 
 
     @Nullable
@@ -53,7 +55,15 @@ public class Transaction_Fragment extends android.support.v4.app.Fragment {
         ActionBartitle = (TextView)toolbar.findViewById(R.id.main_appbar_textView);
         ActionBartitle.setText("Transaction");
 
+        back_arrow = (ImageView)toolbar.findViewById(R.id.back_image);
 
+        back_arrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.getInstance().onBackPressed();
+
+            }
+        });
         return view;
     }
 }

@@ -8,9 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.MainActivity;
 import com.example.ast.carwash_nadeemahmed.R;
 
 /**
@@ -23,6 +25,7 @@ public class Add_Customer extends android.support.v4.app.Fragment {
 
     public static TextView ActionBartitle;
     public Button add_customer_btn;
+    public ImageView back_arrow;
 
     @Nullable
     @Override
@@ -38,6 +41,20 @@ public class Add_Customer extends android.support.v4.app.Fragment {
         ActionBartitle = (TextView) toolbar.findViewById(R.id.main_appbar_textView);
         ActionBartitle.setText("Add Customers");
         add_customer_btn = (Button)view.findViewById(R.id.add_customer_btn);
+
+
+        back_arrow = (ImageView) toolbar.findViewById(R.id.back_image);
+
+        back_arrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.getInstance().onBackPressed();
+
+            }
+        });
+
+
+
 
         add_subscription.setOnClickListener(new View.OnClickListener() {
             @Override

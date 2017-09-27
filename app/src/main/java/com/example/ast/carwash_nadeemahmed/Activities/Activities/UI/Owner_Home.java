@@ -81,21 +81,30 @@ public class Owner_Home extends android.support.v4.app.Fragment {
         ComplaintCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                getFragmentManager().beginTransaction()
+                        .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
+                        .addToBackStack(null)
+                        .add(R.id.container_main, new Complaints_Fragment()).commit();
             }
         });
 
         ServicesCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                getFragmentManager().beginTransaction()
+                        .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
+                        .addToBackStack(null)
+                        .add(R.id.container_main, new Service_Regular_Fragment()).commit();
             }
         });
 
         NotificationCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                getFragmentManager().beginTransaction()
+                        .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
+                        .addToBackStack(null)
+                        .add(R.id.container_main, new Message_Fragment()).commit();
             }
         });
 
@@ -165,6 +174,14 @@ public class Owner_Home extends android.support.v4.app.Fragment {
                             .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
                             .addToBackStack(null)
                             .add(R.id.container_main, new Add_Customer()).commit();
+
+                    drawer_layout.closeDrawer(mDrawerList);
+                }
+                if(i==3){
+                    getFragmentManager().beginTransaction()
+                            .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
+                            .addToBackStack(null)
+                            .add(R.id.container_main, new Send_Message()).commit();
 
                     drawer_layout.closeDrawer(mDrawerList);
                 }

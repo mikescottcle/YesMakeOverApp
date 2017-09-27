@@ -13,6 +13,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
+    android:background="#fff"
     android:overScrollMode="never"
     android:scrollbars="none"
     >
@@ -55,7 +56,8 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:padding="10dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:layout_weight="1"
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -84,9 +86,9 @@
                     <TextView
                         android:padding="10dp"
                         android:textColor="#000"
-                        android:textSize="15sp"
+                        android:textSize="12sp"
                         android:layout_gravity="bottom|center"
-                        android:text="Transection"
+                        android:text="TRANSACTIONS"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
@@ -116,9 +118,9 @@
                     <TextView
                         android:padding="10dp"
                         android:textColor="#000"
-                        android:textSize="15sp"
+                        android:textSize="12sp"
                         android:layout_gravity="bottom|center"
-                        android:text="Complaint"
+                        android:text="COMPLAINTS"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
@@ -146,11 +148,12 @@
                         android:layout_height="wrap_content" />
 
                     <TextView
+                        android:gravity="center"
                         android:padding="10dp"
                         android:textColor="#000"
-                        android:textSize="15sp"
+                        android:textSize="12sp"
                         android:layout_gravity="bottom|center"
-                        android:text="Notifications"
+                        android:text="MESSAGES/NOTIFICATION"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
@@ -163,7 +166,7 @@
 
 
         <LinearLayout
-            android:padding="10dp"
+            android:paddingRight="5dp"
             android:layout_weight="1"
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -190,9 +193,9 @@
                     <TextView
                         android:padding="10dp"
                         android:textColor="#000"
-                        android:textSize="15sp"
+                        android:textSize="12sp"
                         android:layout_gravity="bottom|center"
-                        android:text="Customer"
+                        android:text="CUSTOMERS"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
@@ -223,9 +226,9 @@
                     <TextView
                         android:padding="10dp"
                         android:textColor="#000"
-                        android:textSize="15sp"
+                        android:textSize="12sp"
                         android:layout_gravity="bottom|center"
-                        android:text="Services"
+                        android:text="SERVICES"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
@@ -257,9 +260,9 @@
                 <TextView
                     android:padding="10dp"
                     android:textColor="#000"
-                    android:textSize="15sp"
+                    android:textSize="12sp"
                     android:layout_gravity="bottom|center"
-                    android:text="Profile"
+                    android:text="PROFILE"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 

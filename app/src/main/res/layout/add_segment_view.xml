@@ -3,8 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="#56d6d4d4"
+    android:background="#fff"
     android:layout_height="match_parent">
+    <include
+        android:id="@+id/toolbar_outside"
+        layout="@layout/toolbar" />
+
+
+
     <android.support.v7.widget.CardView
         android:layout_margin="15dp"
         app:cardElevation="5dp"

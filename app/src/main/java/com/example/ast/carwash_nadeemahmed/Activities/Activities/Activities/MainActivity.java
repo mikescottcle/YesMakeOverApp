@@ -13,11 +13,13 @@ import com.example.ast.carwash_nadeemahmed.R;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static MainActivity mainActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        mainActivity = this;
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
             Window window = MainActivity.this.getWindow();
@@ -41,6 +43,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public static MainActivity getInstance(){
+        return mainActivity;
+    }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -52,5 +58,6 @@ public class MainActivity extends AppCompatActivity {
 //            mayRequestContacts();
 //
         }
+
     }
 }

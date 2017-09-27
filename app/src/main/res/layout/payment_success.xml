@@ -24,21 +24,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbar_outside"
-        android:fillViewport="true"
+
         >
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <LinearLayout
+            <RelativeLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
                 <android.support.v7.widget.CardView
-                    app:cardElevation="8dp"
-
+                    app:cardElevation="5dp"
+                    android:id="@+id/cardone"
                     app:cardUseCompatPadding="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -251,8 +246,8 @@
                 </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView
-                    app:cardElevation="8dp"
-
+                    app:cardElevation="5dp"
+                    android:layout_below="@+id/cardone"
                     app:cardUseCompatPadding="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -380,9 +375,18 @@
 
                 </android.support.v7.widget.CardView>
 
-                <LinearLayout
+
+
+
+            </RelativeLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
                     android:layout_gravity="right"
                     android:gravity="center"
+        android:layout_marginBottom="25dp"
                     android:layout_marginRight="10dp"
                     android:orientation="vertical"
 
@@ -408,11 +412,9 @@
 
 
 
-                    <android.support.design.widget.FloatingActionButton
-                        app:fabSize="normal"
+                    <ImageButton
                         android:id="@+id/payment_list_fab"
-                        app:backgroundTint="#039be5"
-                        android:src="@mipmap/sort_icon"
+                        android:background="@mipmap/sort_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
@@ -422,26 +424,25 @@
                 </LinearLayout>
 
 
+    <Button
 
-            </LinearLayout>
-
-            <Button
-                android:layout_alignParentBottom="true"
-                android:id="@+id/payment_done"
-                android:textColor="#fff"
-                android:layout_marginBottom="15dp"
-                android:layout_marginLeft="45dp"
-                android:layout_marginRight="45dp"
-                android:text="DONE"
-                android:background="@drawable/curver_btn"
-                android:layout_gravity="bottom"
-                android:layout_width="match_parent"
-                android:layout_height="35dp" />
+        android:layout_alignParentBottom="true"
+        android:id="@+id/payment_done"
+        android:textColor="#fff"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:text="DONE"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/curver_btn"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="35dp" />
 
 
-        </LinearLayout>
 
-    </ScrollView>
+
+
+
 
 
 </RelativeLayout>

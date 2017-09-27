@@ -12,9 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.MainActivity;
 import com.example.ast.carwash_nadeemahmed.R;
 
 /**
@@ -23,13 +25,13 @@ import com.example.ast.carwash_nadeemahmed.R;
 
 public class Customer_Detail extends android.support.v4.app.Fragment {
 
-    public FloatingActionButton floatingActionButton;
+    public ImageButton floatingActionButton;
     public ImageView edit_customer_details;
     public ImageView delete_customer_details;
     public View clist_Back_view,cdetail_back_view;
     public static TextView ActionBartitle;
     public Button update_payment;
-
+    public ImageView back_arrow;
 
     @Nullable
     @Override
@@ -45,7 +47,7 @@ public class Customer_Detail extends android.support.v4.app.Fragment {
         ActionBartitle.setText("Customers Details");
         clist_Back_view = (View)view.findViewById(R.id.clist_back_view);
         cdetail_back_view= (View)view.findViewById(R.id.cdetail_back_view);
-        floatingActionButton = (FloatingActionButton)view.findViewById(R.id.customer_list_sort);
+        floatingActionButton = (ImageButton)view.findViewById(R.id.customer_list_sort);
         edit_customer_details = (ImageView)view.findViewById(R.id.edit_customer_details);
         delete_customer_details = (ImageView)view.findViewById(R.id.delete_customer_details);
 
@@ -70,6 +72,24 @@ public class Customer_Detail extends android.support.v4.app.Fragment {
             }
         });
 
+        edit_customer_details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getFragmentManager().beginTransaction()
+                        .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
+                        .addToBackStack(null)
+                        .add(R.id.container_main, new Add_Customer()).commit();
+            }
+        });
+
+        back_arrow = (ImageView)toolbar.findViewById(R.id.back_image);
+
+        back_arrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.getInstance().onBackPressed();
+            }
+        });
 
         return view;
     }
@@ -113,6 +133,8 @@ public class Customer_Detail extends android.support.v4.app.Fragment {
                 delete_customer_details.setVisibility(View.VISIBLE);
                 cdetail_back_view.setVisibility(View.VISIBLE);
                 clist_Back_view.setVisibility(View.VISIBLE);
+                floatingActionButton.setBackgroundResource(R.mipmap.closed);
+                update_payment.setText("Edit");
             }
 
             @Override
@@ -168,6 +190,8 @@ public class Customer_Detail extends android.support.v4.app.Fragment {
                 delete_customer_details.setVisibility(View.GONE);
                 cdetail_back_view.setVisibility(View.GONE);
                 clist_Back_view.setVisibility(View.GONE);
+                floatingActionButton.setBackgroundResource(R.mipmap.sort_btn);
+                update_payment.setText("Update");
             }
 
             @Override

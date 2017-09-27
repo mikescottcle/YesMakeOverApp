@@ -9,8 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.MainActivity;
 import com.example.ast.carwash_nadeemahmed.R;
 
 /**
@@ -22,6 +24,7 @@ public class Transaction_Summary extends android.support.v4.app.Fragment {
 
     public Button show_Detail;
     public static TextView ActionBartitle;
+    public ImageView back_arrow;
 
     @Nullable
     @Override
@@ -37,6 +40,16 @@ public class Transaction_Summary extends android.support.v4.app.Fragment {
         ActionBartitle = (TextView)toolbar.findViewById(R.id.main_appbar_textView);
         ActionBartitle.setText("Transaction Summary");
 
+        back_arrow = (ImageView)toolbar.findViewById(R.id.back_image);
+
+        back_arrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.getInstance().onBackPressed();
+
+            }
+        });
+
 
         show_Detail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,7 +57,7 @@ public class Transaction_Summary extends android.support.v4.app.Fragment {
                 getFragmentManager().beginTransaction()
                         .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
                         .addToBackStack(null)
-                        .add(R.id.container_main, new Transaction_Fragment()).commit();
+                        .replace(R.id.container_main, new Transaction_Fragment()).commit();
             }
         });
 

@@ -384,43 +384,42 @@
     </android.support.v7.widget.CardView>
 </ScrollView>
 
-    <android.support.design.widget.FloatingActionButton
-            android:layout_width="wrap_content"
-            app:backgroundTint="#039be5"
-            android:src="@mipmap/sort_icon"
-            app:fabSize="normal"
-        android:id="@+id/customer_list_sort"
-            android:layout_marginBottom="15dp"
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center"
         android:layout_marginRight="15dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_height="wrap_content" />
-
-
-    <ImageView
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:src="@mipmap/edit"
-        android:id="@+id/edit_customer_details"
-        android:layout_marginBottom="75dp"
-        android:layout_marginRight="28dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_height="wrap_content" />
+        android:layout_marginBottom="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
 
     <ImageView
         android:visibility="gone"
         android:layout_width="wrap_content"
         android:src="@mipmap/delete"
         android:id="@+id/delete_customer_details"
-        android:layout_marginBottom="115dp"
-        android:layout_marginRight="28dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
         android:layout_height="wrap_content" />
 
 
+        <ImageView
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:src="@mipmap/edit"
+            android:id="@+id/edit_customer_details"
+            android:layout_height="wrap_content" />
 
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:background="@mipmap/sort_btn"
+            android:id="@+id/customer_list_sort"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
 
 
 </RelativeLayout>
