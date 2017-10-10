@@ -7,8 +7,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.ComplaintActivity;
+import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.MainActivity;
 import com.example.ast.carwash_nadeemahmed.R;
 
 /**
@@ -17,6 +21,9 @@ import com.example.ast.carwash_nadeemahmed.R;
 
 public class Complaint_Details extends android.support.v4.app.Fragment {
     public static TextView ActionBartitle;
+    public ImageView back_arrow;
+    public Button submit_complaint;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -31,6 +38,27 @@ public class Complaint_Details extends android.support.v4.app.Fragment {
 
         ActionBartitle = (TextView)toolbar.findViewById(R.id.main_appbar_textView);
         ActionBartitle.setText("Complaint Details");
+        back_arrow = (ImageView)toolbar.findViewById(R.id.back_image);
+        submit_complaint = (Button)view.findViewById(R.id.submit_complaint);
+
+
+        submit_complaint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getFragmentManager().beginTransaction()
+                        .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
+                        .addToBackStack(null)
+                        .add(R.id.complaint_container, new Complaints_Fragment()).commit();
+            }
+        });
+
+        back_arrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ComplaintActivity.getInstance().onBackPressed();
+
+            }
+        });
 
 
         return view;

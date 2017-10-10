@@ -11,7 +11,7 @@
         android:id="@+id/clist_back_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#c9c8c8"
+        android:background="#7fc9c8c8"
 
         ></View>
     <include
@@ -47,6 +47,8 @@
 
 
     <ListView
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10.0sp"
         android:layout_below="@+id/list_search"
         android:id="@+id/customer_list"
         android:layout_width="match_parent"

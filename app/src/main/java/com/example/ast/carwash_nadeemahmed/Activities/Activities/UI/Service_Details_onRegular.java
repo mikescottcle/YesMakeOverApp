@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.MainActivity;
+import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.ServiceActivity;
 import com.example.ast.carwash_nadeemahmed.R;
 
 /**
@@ -25,6 +26,8 @@ public class Service_Details_onRegular extends android.support.v4.app.Fragment {
 
     public static TextView ActionBartitle;
     public ImageView back_arrow;
+    public Button done_regular_service;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -38,11 +41,11 @@ public class Service_Details_onRegular extends android.support.v4.app.Fragment {
         ActionBartitle.setText("Service Details");
 
         back_arrow = (ImageView) toolbar.findViewById(R.id.back_image);
-
+        done_regular_service = (Button)view.findViewById(R.id.done_regular_service);
         back_arrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.getInstance().onBackPressed();
+                ServiceActivity.getInstance().onBackPressed();
             }
         });
 
@@ -50,13 +53,24 @@ public class Service_Details_onRegular extends android.support.v4.app.Fragment {
         edit_detail_regular = (ImageButton)view.findViewById(R.id.edit_detail_regular);
 
 
+        done_regular_service.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getFragmentManager().beginTransaction()
+                        .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
+                        //    .addToBackStack(null)
+                        .replace(R.id.service_container, new Service_Regular_Fragment()).commit();
+            }
+        });
+
+
         edit_detail_regular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getFragmentManager().beginTransaction()
                         .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
-                        .addToBackStack(null)
-                        .replace(R.id.container_main, new Add_Services_Regular()).commit();
+                  //      .addToBackStack(null)
+                        .replace(R.id.service_container, new Add_Services_Regular()).commit();
             }
         });
 

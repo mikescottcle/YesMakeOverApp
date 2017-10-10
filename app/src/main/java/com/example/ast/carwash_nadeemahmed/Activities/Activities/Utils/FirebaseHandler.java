@@ -13,8 +13,7 @@ import com.google.firebase.storage.StorageReference;
 
 public class FirebaseHandler {
     private DatabaseReference usersRef;
-    private DatabaseReference postRef;
-    private DatabaseReference user_postRef;
+    private DatabaseReference add_customer;
     private DatabaseReference user_takeit_post;
     private DatabaseReference user_takeit_or_leaveit_post;
     private DatabaseReference user_privacy;
@@ -54,10 +53,7 @@ public class FirebaseHandler {
 
     private void initializeChildRefs() {
         usersRef = firebaseRef.child("users");
-        postRef = firebaseRef.child("post");
-        user_postRef = firebaseRef.child("user-post");
-        user_takeit_or_leaveit_post = firebaseRef.child("user-take-or-leave-post");
-        user_privacy = firebaseRef.child("users-privacy");
+        add_customer = firebaseRef.child("customer");
         activities_seen_by_user = firebaseRef.child("activities-seen-by-user");
        // user_takeit_post = firebaseRef.child("user-takeit-post");
     }
@@ -72,14 +68,12 @@ public class FirebaseHandler {
     }
 
 
-    public DatabaseReference getPostRef() {
-        return postRef;
+    public DatabaseReference getAdd_customer() {
+        return add_customer;
     }
 
-
-
-    public DatabaseReference getUser_postRef() {
-        return user_postRef;
+    public void setAdd_customer(DatabaseReference add_customer) {
+        this.add_customer = add_customer;
     }
 
     public DatabaseReference getUser_privacy() {

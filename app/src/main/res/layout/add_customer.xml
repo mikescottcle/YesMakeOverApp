@@ -14,10 +14,13 @@
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar_outside"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:layout_below="@id/toolbar_outside"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
         <LinearLayout
+
             android:padding="10dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -40,6 +43,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <EditText
+                        android:id="@+id/customer_name"
                         android:textSize="12sp"
                         android:hint="CUSTOMER NAME"
                         android:layout_width="match_parent"
@@ -47,8 +51,10 @@
 
 
                     <EditText
+                        android:id="@+id/customer_mobile"
                         android:textSize="12sp"
                         android:textColor="#000"
+                        android:inputType="number"
                         android:layout_marginTop="10dp"
                         android:hint="MOBILE"
                         android:layout_width="match_parent"
@@ -62,12 +68,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <Spinner
+                        android:id="@+id/spiner_apartment"
                         style="@style/Base.Widget.AppCompat.Spinner.Underlined"
-                        android:paddingBottom="25dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
                     <EditText
+                        android:id="@+id/customer_parking_slot_not"
                         android:textColor="#000"
                         android:textSize="12sp"
                         android:layout_marginTop="5dp"
@@ -87,20 +94,25 @@
 
 
                     <Spinner
+
+                        android:id="@+id/spinner_block"
                         style="@style/Base.Widget.AppCompat.Spinner.Underlined"
-                        android:paddingBottom="25dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
                     <EditText
+                        android:id="@+id/customer_email"
                         android:layout_marginTop="10dp"
                         android:textSize="12sp"
                         android:hint="EMAIL"
+                        android:inputType="textEmailAddress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
 
                     <EditText
+                        android:inputType="number"
+                        android:id="@+id/customer_flat"
                         android:textSize="12sp"
                         android:textColor="#000"
                         android:layout_marginTop="15dp"
@@ -119,8 +131,8 @@
 
 
                     <Spinner
+                        android:id="@+id/customer_parking_spinner"
                         style="@style/Base.Widget.AppCompat.Spinner.Underlined"
-                        android:paddingBottom="25dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -142,6 +154,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                         <TextView
+                            android:id="@+id/vehicle_make"
                         android:textStyle="bold"
                         android:textColor="#e66110"
                         android:textSize="10sp"
@@ -156,6 +169,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
+                        android:id="@+id/vehicle_reg_no"
                         android:textStyle="bold"
                         android:textColor="#e66110"
                         android:textSize="10sp"

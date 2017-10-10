@@ -397,7 +397,7 @@
             </android.support.v7.widget.CardView>
 
             <Button
-                android:id="@+id/add_customer_btn"
+                android:id="@+id/submit_complaint"
                 android:layout_marginTop="5dp"
                 android:textColor="#fff"
                 android:layout_marginBottom="15dp"

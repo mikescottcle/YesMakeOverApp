@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.ComplaintActivity;
 import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.MainActivity;
 import com.example.ast.carwash_nadeemahmed.R;
 
@@ -46,14 +47,14 @@ public class Add_Complaint extends android.support.v4.app.Fragment {
                 getFragmentManager().beginTransaction()
                         .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
                         .addToBackStack(null)
-                        .add(R.id.container_main, new Complaint_Details()).commit();
+                        .add(R.id.complaint_container, new Complaint_Details()).commit();
             }
         });
 
         back_arrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.getInstance().onBackPressed();
+                ComplaintActivity.getInstance().onBackPressed();
 
             }
         });

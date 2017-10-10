@@ -385,7 +385,7 @@
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/pay_online"
+        android:layout_above="@+id/done_regular_service"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="16dp">
 
@@ -417,7 +417,7 @@
 
     <Button
         android:layout_alignParentBottom="true"
-        android:id="@+id/pay_online"
+        android:id="@+id/done_regular_service"
         android:textColor="#fff"
         android:layout_marginBottom="15dp"
         android:layout_marginLeft="45dp"

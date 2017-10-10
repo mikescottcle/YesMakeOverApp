@@ -16,8 +16,17 @@
         jumboMode="true"
         optimize="true"
         revision="26.0.1"
-        sha1="fe25445e1e3b137fe54a0a5ef38ada051c40c8ab">
+        sha1="7a0d5846726a17f0b574cf122b4f59ea0a21685c">
         <dex dex="E:\New folder\CarMakeOver\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_a260f84aa43d9bd99295b8164b0a7cb47f6cb4fe\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Faiz\.android\build-cache\08a85ff84990a3dc41d979edefe162d41dc89dfa\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="85a19f0f4e6408f225a5639131e42944bfa32bd6">
+        <dex dex="E:\New folder\CarMakeOver\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ced4077b0716ce438410c7d98ff29b053e46f277\classes.dex" />
     </item>
 
 </items>

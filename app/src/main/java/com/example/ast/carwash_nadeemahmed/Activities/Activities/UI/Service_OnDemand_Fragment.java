@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.MainActivity;
+import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.ServiceActivity;
 import com.example.ast.carwash_nadeemahmed.R;
 
 /**
@@ -60,8 +61,8 @@ public class Service_OnDemand_Fragment extends android.support.v4.app.Fragment {
                 //   customAnimations();
                 getFragmentManager().beginTransaction()
                         .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
-                        .addToBackStack(null)
-                        .add(R.id.container_main, new Service_Regular_Fragment()).commit();
+                       // .addToBackStack(null)
+                        .replace(R.id.service_container, new Service_Regular_Fragment()).commit();
             }
         });
 
@@ -71,7 +72,7 @@ public class Service_OnDemand_Fragment extends android.support.v4.app.Fragment {
         back_arrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.getInstance().onBackPressed();
+                ServiceActivity.getInstance().onBackPressed();
 
             }
         });
@@ -101,7 +102,7 @@ public class Service_OnDemand_Fragment extends android.support.v4.app.Fragment {
                 getFragmentManager().beginTransaction()
                         .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
                         .addToBackStack(null)
-                        .replace(R.id.container_main, new Add_Service_Ondemand()).commit();
+                        .replace(R.id.service_container, new Add_Service_Ondemand()).commit();
             }
         });
 

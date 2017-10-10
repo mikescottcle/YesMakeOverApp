@@ -11,12 +11,23 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.CustomerActivity;
 import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.MainActivity;
+import com.example.ast.carwash_nadeemahmed.Activities.Activities.Adapters.Customer_list_Adapter;
+import com.example.ast.carwash_nadeemahmed.Activities.Activities.Model.Add_Customer_Object;
+import com.example.ast.carwash_nadeemahmed.Activities.Activities.Utils.FirebaseHandler;
 import com.example.ast.carwash_nadeemahmed.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 /**
  * Created by AST on 9/16/2017.
@@ -30,33 +41,61 @@ public class CustomerList_Fragment extends android.support.v4.app.Fragment {
     public View clist_Back_view;
     public static TextView ActionBartitle;
     public ImageView back_arrow;
+    public ListView customer_list;
+    public Customer_list_Adapter customer_list_adapter;
+    public ArrayList<Add_Customer_Object> add_customer_objects;
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.customer_list,null);
-
-        Toolbar toolbar= (Toolbar)view.findViewById(R.id.toolbar_outside);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayOptions(0, android.support.v7.app.ActionBar.DISPLAY_SHOW_TITLE);
-
-        ActionBartitle = (TextView)toolbar.findViewById(R.id.main_appbar_textView);
-        ActionBartitle.setText("Customers");
-
-        clist_Back_view = (View)view.findViewById(R.id.clist_back_view);
-        floatingActionButton = (ImageButton)view.findViewById(R.id.customer_list_sort);
-        floatingMenuItem1 = (ImageView)view.findViewById(R.id.floatingMenuItem1);
-        floatingMenuItem2 = (ImageView)view.findViewById(R.id.floatingMenuItem2);
+        add_customer_objects = new ArrayList<>();
+        initialzeView(view);
 
 
+        FirebaseHandler.getInstance().getAdd_customer().addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot!=null){
+                    if(dataSnapshot.getValue()!=null) {
+                       add_customer_objects.clear();
+                        for (DataSnapshot Snap : dataSnapshot.getChildren()) {
+                            Add_Customer_Object add_customer_object = Snap.getValue(Add_Customer_Object.class);
+                            add_customer_objects.add(add_customer_object);
+                            customer_list_adapter.notifyDataSetChanged();
+                        }
+                    }
+                }
+            }
 
-        back_arrow = (ImageView)toolbar.findViewById(R.id.back_image);
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        customer_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                Bundle bundle = new Bundle();
+                Customer_Detail add_customer = new Customer_Detail();
+                bundle.putParcelable("object", add_customer_objects.get(i));
+                add_customer.setArguments(bundle);
+                getFragmentManager().beginTransaction()
+                        .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
+                        .addToBackStack(null)
+                        .replace(R.id.customer_container,add_customer).commit();
+            }
+        });
+
 
         back_arrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.getInstance().onBackPressed();
+                CustomerActivity.getInstance().onBackPressed();
 
             }
         });
@@ -86,12 +125,13 @@ public class CustomerList_Fragment extends android.support.v4.app.Fragment {
                 getFragmentManager().beginTransaction()
                         .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
                         .addToBackStack(null)
-                        .add(R.id.container_main, new Add_Customer()).commit();
+                        .replace(R.id.customer_container, new Add_Customer()).commit();
             }
         });
 
         return view;
     }
+
 
     public void customAnimations() {
         if (floatingMenuItem1.getVisibility() == View.VISIBLE) {
@@ -202,5 +242,25 @@ public class CustomerList_Fragment extends android.support.v4.app.Fragment {
         });
 
         animatorSet.start();
+    }
+
+
+    private void initialzeView(View view) {
+        Toolbar toolbar= (Toolbar)view.findViewById(R.id.toolbar_outside);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayOptions(0, android.support.v7.app.ActionBar.DISPLAY_SHOW_TITLE);
+
+        ActionBartitle = (TextView)toolbar.findViewById(R.id.main_appbar_textView);
+        ActionBartitle.setText("Customers");
+
+        clist_Back_view = (View)view.findViewById(R.id.clist_back_view);
+        floatingActionButton = (ImageButton)view.findViewById(R.id.customer_list_sort);
+        floatingMenuItem1 = (ImageView)view.findViewById(R.id.floatingMenuItem1);
+        floatingMenuItem2 = (ImageView)view.findViewById(R.id.floatingMenuItem2);
+        customer_list = (ListView)view.findViewById(R.id.customer_list);
+        back_arrow = (ImageView)toolbar.findViewById(R.id.back_image);
+        customer_list_adapter = new Customer_list_Adapter(add_customer_objects,getActivity());
+        customer_list.setAdapter(customer_list_adapter);
+
     }
 }

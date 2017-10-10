@@ -24,6 +24,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <FrameLayout
+                android:id="@+id/cust_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+            </FrameLayout>
+
             <ImageView
                 android:id="@+id/main_image"
                 android:src="@mipmap/cover_bg"
@@ -61,6 +69,7 @@
 
 
                         <android.support.v7.widget.CardView
+                            android:id="@+id/transaction_customer"
                             android:layout_width="match_parent"
                             android:layout_height="120dp"
                             card_view:cardUseCompatPadding="true"
@@ -81,7 +90,7 @@
                                 <TextView
                                     android:padding="10dp"
                                     android:textColor="#000"
-                                    android:textSize="15sp"
+                                    android:textSize="12sp"
                                     android:layout_gravity="bottom|center"
                                     android:text="Transection"
                                     android:layout_width="wrap_content"
@@ -92,6 +101,7 @@
 
 
                         <android.support.v7.widget.CardView
+                            android:id="@+id/complaint_customer"
                             android:layout_width="match_parent"
                             android:layout_height="120dp"
                             card_view:cardUseCompatPadding="true"
@@ -112,7 +122,7 @@
                                 <TextView
                                     android:padding="10dp"
                                     android:textColor="#000"
-                                    android:textSize="15sp"
+                                    android:textSize="12sp"
                                     android:layout_gravity="bottom|center"
                                     android:text="Complaint"
                                     android:layout_width="wrap_content"
@@ -124,6 +134,7 @@
 
 
                         <android.support.v7.widget.CardView
+                            android:id="@+id/message_customer"
                             android:layout_width="match_parent"
                             android:layout_height="120dp"
                             card_view:cardUseCompatPadding="true"
@@ -144,7 +155,7 @@
                                     android:gravity="center"
                                     android:padding="10dp"
                                     android:textColor="#000"
-                                    android:textSize="15sp"
+                                    android:textSize="12sp"
                                     android:layout_gravity="bottom|center"
                                     android:text="Messages/Notifications"
                                     android:layout_width="wrap_content"
@@ -166,6 +177,7 @@
                         android:layout_height="wrap_content">
 
                         <android.support.v7.widget.CardView
+                            android:id="@+id/terms_and_cond_customer"
                             android:layout_width="match_parent"
                             android:layout_height="120dp"
                             card_view:cardUseCompatPadding="true"
@@ -186,7 +198,7 @@
                                     android:gravity="center"
                                     android:padding="10dp"
                                     android:textColor="#000"
-                                    android:textSize="15sp"
+                                    android:textSize="12sp"
                                     android:layout_gravity="bottom|center"
                                     android:text="Terms &amp; Conditions"
                                     android:layout_width="wrap_content"
@@ -198,6 +210,7 @@
 
 
                         <android.support.v7.widget.CardView
+                            android:id="@+id/service_customer"
                             android:layout_width="match_parent"
                             android:layout_height="120dp"
                             card_view:cardUseCompatPadding="true"
@@ -218,7 +231,7 @@
                                 <TextView
                                     android:padding="10dp"
                                     android:textColor="#000"
-                                    android:textSize="15sp"
+                                    android:textSize="12sp"
                                     android:layout_gravity="bottom|center"
                                     android:text="Services"
                                     android:layout_width="wrap_content"
@@ -231,6 +244,7 @@
 
 
                         <android.support.v7.widget.CardView
+                            android:id="@+id/profile_customer"
                             android:layout_width="match_parent"
                             android:layout_height="120dp"
                             card_view:cardUseCompatPadding="true"
@@ -257,7 +271,7 @@
                                     android:padding="10dp"
                                     android:text="Profile/Payments"
                                     android:textColor="#000"
-                                    android:textSize="15sp" />
+                                    android:textSize="12sp" />
 
                             </LinearLayout>
 

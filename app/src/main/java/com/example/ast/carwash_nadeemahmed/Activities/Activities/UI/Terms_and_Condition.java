@@ -32,12 +32,12 @@ public class Terms_and_Condition extends android.support.v4.app.Fragment {
                 if(getActivity().getSupportFragmentManager().findFragmentById(R.id.termcontainer) != null) {
                     getActivity().getSupportFragmentManager()
                             .beginTransaction()
-                            .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
+                            .setCustomAnimations(R.anim.slide_right, R.anim.slide_out_right, R.anim.slide_left, R.anim.slide_out_left)
                     .remove(getActivity().getSupportFragmentManager().findFragmentById(R.id.termcontainer)).commit();
                 }else if(getActivity().getSupportFragmentManager().findFragmentById(R.id.container_main) != null) {
                     getActivity().getSupportFragmentManager()
                             .beginTransaction()
-                            .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
+                            .setCustomAnimations(R.anim.slide_right, R.anim.slide_out_right, R.anim.slide_left, R.anim.slide_out_left)
                     .remove(getActivity().getSupportFragmentManager().findFragmentById(R.id.container_main)).commit();
                 }
             }

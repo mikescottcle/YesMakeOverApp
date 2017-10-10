@@ -1,0 +1,58 @@
+{
+  "project_info": {
+    "project_number": "785813276385",
+    "firebase_url": "https://car-make-over.firebaseio.com",
+    "project_id": "car-make-over",
+    "storage_bucket": "car-make-over.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:785813276385:android:d4c028c8ac5161b4",
+        "android_client_info": {
+          "package_name": "com.example.ast.carwash_nadeemahmed"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "785813276385-203ev0ck12ljsbttn62b8f8sbs425uou.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ast.carwash_nadeemahmed",
+            "certificate_hash": "f8c604554a60f1f77b54fb6cefc7211b50cd1dca"
+          }
+        },
+        {
+          "client_id": "785813276385-53g279u333hlldg4047t12pb904m20dd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABX0VXCXJYR3j6-kYpoi3qAm553IRjkJE"
+        },
+        {
+          "current_key": "AIzaSyB9iidYhwL7RUjZJA-Ay5JkQlZTnaQnMks"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "785813276385-53g279u333hlldg4047t12pb904m20dd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

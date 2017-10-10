@@ -32,7 +32,7 @@
             android:drawableLeft="@mipmap/search"
             android:background="@drawable/circular_edittext"
             android:layout_width="match_parent"
-            android:layout_height="30dp" />
+            android:layout_height="40dp" />
 
 
     </LinearLayout>
@@ -237,7 +237,7 @@
 
                 <TextView
                     android:textColor="#000"
-                    android:text="Boye*"
+                    android:text="Boy*"
                     android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />

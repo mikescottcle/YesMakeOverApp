@@ -24,7 +24,7 @@
             android:layout_marginRight="15dp"
             android:layout_marginBottom="15dp"
             android:textColorHint="#fff"
-            android:hint="Search By Name"
+            android:hint="Search By Vehicle Reg No"
             android:drawablePadding="10dp"
             android:paddingEnd="15dp"
             android:paddingStart="20dp"
@@ -32,7 +32,7 @@
             android:drawableLeft="@mipmap/search"
             android:background="@drawable/circular_edittext"
             android:layout_width="match_parent"
-            android:layout_height="30dp" />
+            android:layout_height="40dp" />
 
 
     </LinearLayout>

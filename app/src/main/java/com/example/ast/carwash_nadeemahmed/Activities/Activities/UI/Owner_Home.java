@@ -1,5 +1,6 @@
 package com.example.ast.carwash_nadeemahmed.Activities.Activities.UI;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
@@ -14,6 +15,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
+import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.ComplaintActivity;
+import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.CustomerActivity;
+import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.Message_NotificationActivity;
+import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.ProfileActivity;
+import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.ServiceActivity;
+import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.TransactionActivity;
 import com.example.ast.carwash_nadeemahmed.Activities.Activities.Adapters.Navigations_ItemsAdapter;
 import com.example.ast.carwash_nadeemahmed.Activities.Activities.Adapters.OnSwipeTouchListener;
 import com.example.ast.carwash_nadeemahmed.R;
@@ -60,10 +67,18 @@ public class Owner_Home extends android.support.v4.app.Fragment {
         transactionCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getFragmentManager().beginTransaction()
-                        .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
-                        .addToBackStack(null)
-                        .add(R.id.container_main, new Transaction_Summary()).commit();
+
+                        Intent intent = new Intent(getActivity(), TransactionActivity.class);
+                        getActivity().overridePendingTransition(R.anim.slide_right,R.anim.slide_out_right);
+                        getActivity().startActivity(intent);
+                        getActivity().overridePendingTransition(R.anim.slide_left,R.anim.slide_out_left);
+
+
+
+//                getFragmentManager().beginTransaction()
+//                        .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
+//                        .addToBackStack(null)
+//                        .add(R.id.container_main, new Transaction_Summary()).commit();
             }
         });
 
@@ -71,50 +86,77 @@ public class Owner_Home extends android.support.v4.app.Fragment {
         CustomerCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getFragmentManager().beginTransaction()
-                        .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
-                        .addToBackStack(null)
-                        .add(R.id.container_main, new CustomerList_Fragment()).commit();
+                Intent intent = new Intent(getActivity(), CustomerActivity.class);
+                getActivity().overridePendingTransition(R.anim.slide_right,R.anim.slide_out_right);
+                getActivity().startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.slide_left,R.anim.slide_out_left);
+             //   getFragmentManager().beginTransaction()
+              //          .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
+              //          .addToBackStack(null)
+                 //       .add(R.id.container_main, new CustomerList_Fragment()).commit();
             }
         });
 
         ComplaintCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getFragmentManager().beginTransaction()
-                        .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
-                        .addToBackStack(null)
-                        .add(R.id.container_main, new Complaints_Fragment()).commit();
+
+                Intent intent = new Intent(getActivity(), ComplaintActivity.class);
+                getActivity().overridePendingTransition(R.anim.slide_right,R.anim.slide_out_right);
+                getActivity().startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.slide_left,R.anim.slide_out_left);
+
+
+//                getFragmentManager().beginTransaction()
+//                        .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
+//                        .addToBackStack(null)
+//                        .add(R.id.container_main, new Complaints_Fragment()).commit();
             }
         });
 
         ServicesCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getFragmentManager().beginTransaction()
-                        .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
-                        .addToBackStack(null)
-                        .add(R.id.container_main, new Service_Regular_Fragment()).commit();
+
+                Intent intent = new Intent(getActivity(), ServiceActivity.class);
+                getActivity().overridePendingTransition(R.anim.slide_right,R.anim.slide_out_right);
+                getActivity().startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.slide_left,R.anim.slide_out_left);
+
+//                getFragmentManager().beginTransaction()
+//                        .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
+//                        .addToBackStack(null)
+//                        .add(R.id.container_main, new Service_Regular_Fragment()).commit();
             }
         });
 
         NotificationCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getFragmentManager().beginTransaction()
-                        .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
-                        .addToBackStack(null)
-                        .add(R.id.container_main, new Message_Fragment()).commit();
+                Intent intent = new Intent(getActivity(), Message_NotificationActivity.class);
+                getActivity().overridePendingTransition(R.anim.slide_right,R.anim.slide_out_right);
+                getActivity().startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.slide_left,R.anim.slide_out_left);
+//                getFragmentManager().beginTransaction()
+//                        .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
+//                        .addToBackStack(null)
+//                        .add(R.id.container_main, new Message_Fragment()).commit();
             }
         });
 
         ProfileCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getFragmentManager().beginTransaction()
-                        .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
-                        .addToBackStack(null)
-                        .add(R.id.container_main, new Owner_Profile()).commit();
+
+                Intent intent = new Intent(getActivity(), ProfileActivity.class);
+                getActivity().overridePendingTransition(R.anim.slide_right,R.anim.slide_out_right);
+                getActivity().startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.slide_left,R.anim.slide_out_left);
+
+//                getFragmentManager().beginTransaction()
+//                        .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
+//                        .addToBackStack(null)
+//                        .add(R.id.container_main, new Owner_Profile_Edit()).commit();
             }
         });
 

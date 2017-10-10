@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.MainActivity;
+import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.ServiceActivity;
 import com.example.ast.carwash_nadeemahmed.R;
 
 /**
@@ -42,7 +43,7 @@ public class Add_Services_Regular extends android.support.v4.app.Fragment {
         back_arrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.getInstance().onBackPressed();
+                ServiceActivity.getInstance().onBackPressed();
             }
         });
 
@@ -53,8 +54,8 @@ public class Add_Services_Regular extends android.support.v4.app.Fragment {
             public void onClick(View view) {
                 getFragmentManager().beginTransaction()
                         .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
-                        .addToBackStack(null)
-                        .replace(R.id.container_main, new Service_Details_onRegular()).commit();
+                 //       .addToBackStack(null)
+                        .replace(R.id.service_container, new Service_Details_onRegular()).commit();
             }
         });
 

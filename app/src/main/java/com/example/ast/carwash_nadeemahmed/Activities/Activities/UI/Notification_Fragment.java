@@ -70,7 +70,7 @@ public class Notification_Fragment extends android.support.v4.app.Fragment {
                 getFragmentManager().beginTransaction()
                         .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
                         .addToBackStack(null)
-                        .replace(R.id.container_main, new Message_Fragment()).commit();
+                        .replace(R.id.message_container, new Message_Fragment()).commit();
             }
         });
 

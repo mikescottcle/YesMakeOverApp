@@ -165,6 +165,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:id="@+id/parking_slot_detail"
                         android:textSize="12sp"
                         android:hint="17926"
                         android:layout_width="match_parent"
@@ -172,6 +173,7 @@
 
 
                     <TextView
+                        android:id="@+id/customer_name_detail"
                         android:layout_marginTop="5dp"
                         android:textSize="12sp"
                         android:hint="John Smith"
@@ -180,13 +182,14 @@
 
 
                     <TextView
+                        android:id="@+id/customer_phone_detail"
                         android:textSize="12sp"
-                        android:textColor="#000"
                         android:layout_marginTop="5dp"
                         android:hint="9999990000"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                     <TextView
+                        android:id="@+id/customer_app_detail"
                         android:textSize="12sp"
                         android:layout_marginTop="5dp"
 
@@ -194,6 +197,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                     <TextView
+                        android:id="@+id/customer_block_detail"
                         android:textSize="12sp"
                         android:hint="Tower 1"
                         android:layout_marginTop="5dp"
@@ -205,6 +209,7 @@
 
 
                     <TextView
+                        android:id="@+id/customer_flat_detail"
                         android:layout_marginTop="5dp"
 
                         android:textSize="12sp"
@@ -214,6 +219,7 @@
 
 
                     <TextView
+                        android:id="@+id/customer_parking_detail"
                         android:layout_marginTop="5dp"
 
                         android:textSize="12sp"
@@ -223,6 +229,7 @@
 
 
                     <TextView
+                        android:id="@+id/customer_email_detail"
                         android:layout_marginTop="5dp"
 
                         android:textSize="12sp"
@@ -305,21 +312,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:id="@+id/customer_subs_vehicle_make"
                     android:textSize="12sp"
                     android:hint="Swift VDI:"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-
-                <TextView
-                    android:textSize="12sp"
-                    android:hint="Honda Jazz:"
-                    android:layout_marginTop="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-
-
-
 
             </LinearLayout>
             <LinearLayout
@@ -330,49 +327,20 @@
                 android:layout_height="wrap_content">
 
                 <LinearLayout
-                    android:weightSum="1"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                 <TextView
-                    android:layout_weight="0.7"
+                    android:id="@+id/customer_subs_vehicle_rno"
                     android:textSize="12sp"
-                    android:hint="AP28"
+                    android:hint="AP28 AP28"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
-                    <TextView
-                        android:layout_weight="0.3"
-                        android:textSize="12sp"
-                        android:hint="AP28"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_marginTop="5dp"
-                    android:weightSum="1"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_weight="0.7"
-                        android:textSize="12sp"
-                        android:hint="AP28"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                    <TextView
-                        android:layout_weight="0.3"
-                        android:textSize="12sp"
-                        android:hint="AP28"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
 
 
 
