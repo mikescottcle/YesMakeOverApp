@@ -3,24 +3,35 @@ package com.example.ast.carwash_nadeemahmed.Activities.Activities.UI;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.app.Dialog;
+import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.CustomerActivity;
 import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.MainActivity;
 import com.example.ast.carwash_nadeemahmed.Activities.Activities.Adapters.Customer_list_Adapter;
 import com.example.ast.carwash_nadeemahmed.Activities.Activities.Model.Add_Customer_Object;
+import com.example.ast.carwash_nadeemahmed.Activities.Activities.Model.Apartment;
+import com.example.ast.carwash_nadeemahmed.Activities.Activities.Utils.AppLogs;
 import com.example.ast.carwash_nadeemahmed.Activities.Activities.Utils.FirebaseHandler;
 import com.example.ast.carwash_nadeemahmed.R;
 import com.google.firebase.database.DataSnapshot;
@@ -35,16 +46,24 @@ import java.util.ArrayList;
 
 public class CustomerList_Fragment extends android.support.v4.app.Fragment {
 
-    public ImageButton floatingActionButton;
+    public ImageView floatingActionButton;
     public ImageView floatingMenuItem1;
     public ImageView floatingMenuItem2;
     public View clist_Back_view;
     public static TextView ActionBartitle;
-    public ImageView back_arrow;
+    public ImageView back_arrow,remove_search;
     public ListView customer_list;
     public Customer_list_Adapter customer_list_adapter;
     public ArrayList<Add_Customer_Object> add_customer_objects;
-
+    public EditText customer_list_search;
+    public Dialog filterDialog;
+    public Button custlist_filter_apply,custlist_filter_cancle;
+    public Spinner custlist_filter_appart,custlist_filter_account,custlist_filter_block;
+    public EditText custlist_filter_min_a,custlist_filter_min_b;
+    public String blockName[] = {"Tower 1", "Tower 2", "Tower 3", "Tower 4", "Tower 5", "Tower 6", "Tower 7", "Tower 8", "Tower 9", "Tower 10"};
+    ArrayAdapter<String> adapterApartmentName;
+    public String apartmentName[];
+    ArrayAdapter<String> adapterBlockName;
 
     @Nullable
     @Override
@@ -64,6 +83,7 @@ public class CustomerList_Fragment extends android.support.v4.app.Fragment {
                         for (DataSnapshot Snap : dataSnapshot.getChildren()) {
                             Add_Customer_Object add_customer_object = Snap.getValue(Add_Customer_Object.class);
                             add_customer_objects.add(add_customer_object);
+                            customer_list_adapter.add(add_customer_object);
                             customer_list_adapter.notifyDataSetChanged();
                         }
                     }
@@ -76,18 +96,48 @@ public class CustomerList_Fragment extends android.support.v4.app.Fragment {
             }
         });
 
+        FirebaseHandler.getInstance().getAdd_apartment().addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot!=null){
+                    if(dataSnapshot.getValue()!=null) {
+                        int i = 0;
+                        apartmentName = new String[(int) dataSnapshot.getChildrenCount()];
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            AppLogs.d("TAG_SNAP", snapshot.getValue().toString());
+                            Apartment apartment = snapshot.getValue(Apartment.class);
+                            apartmentName[i] = apartment.getApartmentName();
+                            i++;
+                        }
+                        adapterApartmentName = new ArrayAdapter<String>(
+                                getActivity(), R.layout.segment_custom_spinner_text, apartmentName);
+                        custlist_filter_appart.setAdapter(adapterApartmentName);
+
+
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
         customer_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 Bundle bundle = new Bundle();
-                Customer_Detail add_customer = new Customer_Detail();
+                Customer_Detail customer_detail = new Customer_Detail();
                 bundle.putParcelable("object", add_customer_objects.get(i));
-                add_customer.setArguments(bundle);
+                customer_detail.setArguments(bundle);
                 getFragmentManager().beginTransaction()
                         .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
                         .addToBackStack(null)
-                        .replace(R.id.customer_container,add_customer).commit();
+                        .replace(R.id.customer_container,customer_detail).commit();
             }
         });
 
@@ -114,6 +164,9 @@ public class CustomerList_Fragment extends android.support.v4.app.Fragment {
 
 //                animations();
                 customAnimations();
+                filterDialog.show();
+
+
 
             }
         });
@@ -126,6 +179,37 @@ public class CustomerList_Fragment extends android.support.v4.app.Fragment {
                         .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
                         .addToBackStack(null)
                         .replace(R.id.customer_container, new Add_Customer()).commit();
+            }
+        });
+
+        //search Function
+        customer_list_search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if(!customer_list_search.getText().toString().equals("")){
+                    remove_search.setVisibility(View.VISIBLE);
+                }else{
+                    remove_search.setVisibility(View.INVISIBLE);
+                }
+                customer_list_adapter.filterCustomer(customer_list_search.getText().toString());
+
+            }
+        });
+
+        remove_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                customer_list_search.setText("");
             }
         });
 
@@ -249,18 +333,70 @@ public class CustomerList_Fragment extends android.support.v4.app.Fragment {
         Toolbar toolbar= (Toolbar)view.findViewById(R.id.toolbar_outside);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayOptions(0, android.support.v7.app.ActionBar.DISPLAY_SHOW_TITLE);
-
         ActionBartitle = (TextView)toolbar.findViewById(R.id.main_appbar_textView);
         ActionBartitle.setText("Customers");
-
+        customer_list_search = (EditText)view.findViewById(R.id.customer_list_search);
         clist_Back_view = (View)view.findViewById(R.id.clist_back_view);
-        floatingActionButton = (ImageButton)view.findViewById(R.id.customer_list_sort);
+        floatingActionButton = (ImageView) view.findViewById(R.id.customer_list_sort);
         floatingMenuItem1 = (ImageView)view.findViewById(R.id.floatingMenuItem1);
         floatingMenuItem2 = (ImageView)view.findViewById(R.id.floatingMenuItem2);
         customer_list = (ListView)view.findViewById(R.id.customer_list);
+        remove_search = (ImageView)view.findViewById(R.id.remove_search);
         back_arrow = (ImageView)toolbar.findViewById(R.id.back_image);
+
+
         customer_list_adapter = new Customer_list_Adapter(add_customer_objects,getActivity());
         customer_list.setAdapter(customer_list_adapter);
+
+
+        //for Dialog
+        View completeView = getActivity().getLayoutInflater().inflate(R.layout.custlist_filter, null);
+        filterDialog = new Dialog(getActivity());
+        filterDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        filterDialog.setContentView(completeView);
+
+        custlist_filter_apply= (Button)completeView.findViewById(R.id.custlist_filter_apply);
+        custlist_filter_cancle = (Button)completeView.findViewById(R.id.custlist_filter_cancle);
+        custlist_filter_account = (Spinner)completeView.findViewById(R.id.custlist_filter_account);
+        custlist_filter_min_a = (EditText)completeView.findViewById(R.id.custlist_filter_min_a);
+        custlist_filter_min_b = (EditText)completeView.findViewById(R.id.custlist_filter_min_b);
+        custlist_filter_block = (Spinner)completeView.findViewById(R.id.custlist_filter_block);
+        custlist_filter_appart = (Spinner)completeView.findViewById(R.id.custlist_filter_appart);
+
+        adapterBlockName = new ArrayAdapter<String>(
+                getActivity(),R.layout.segment_custom_spinner_text, blockName);
+        custlist_filter_block.setAdapter(adapterBlockName);
+
+
+        custlist_filter_block.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (adapterView.getChildAt(0) != null) {
+                    ((TextView) adapterView.getChildAt(0)).setTextSize(10);
+                    ((TextView) adapterView.getChildAt(0)).setTypeface(null, Typeface.BOLD);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        custlist_filter_appart.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (adapterView.getChildAt(0) != null) {
+                    ((TextView) adapterView.getChildAt(0)).setTextSize(10);
+                    ((TextView) adapterView.getChildAt(0)).setTypeface(null, Typeface.BOLD);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
     }
 }

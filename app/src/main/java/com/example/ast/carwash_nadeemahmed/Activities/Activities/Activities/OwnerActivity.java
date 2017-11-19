@@ -1,5 +1,6 @@
 package com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -18,6 +19,7 @@ import com.example.ast.carwash_nadeemahmed.Activities.Activities.UI.Owner_Home;
 import com.example.ast.carwash_nadeemahmed.Activities.Activities.UI.Send_Message;
 import com.example.ast.carwash_nadeemahmed.Activities.Activities.UI.Terms_and_Condition;
 import com.example.ast.carwash_nadeemahmed.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class OwnerActivity extends AppCompatActivity {
 
@@ -26,8 +28,8 @@ public class OwnerActivity extends AppCompatActivity {
     public DrawerLayout drawer_layout;
     public ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
-    public String[] menuName= {"Change Password","Terms & Conditions","Send Messages","Add Customer","Pay Bill Online"};
-    public int[] menuIcons = {R.mipmap.change_password,R.mipmap.menu_terms_and_conditions,R.mipmap.send_message,R.mipmap.add_customer,R.mipmap.pay_bill};
+    public String[] menuName= {"Change Password","Terms & Conditions","Send Messages","Add Customer","Pay Bill Online","Logout"};
+    public int[] menuIcons = {R.mipmap.change_password,R.mipmap.menu_terms_and_conditions,R.mipmap.send_message,R.mipmap.add_customer,R.mipmap.pay_bill,R.mipmap.add_customer};
     public FrameLayout owner_container;
 
 
@@ -99,6 +101,13 @@ public class OwnerActivity extends AppCompatActivity {
                             .addToBackStack(null)
                             .add(R.id.owner_container, new Send_Message()).commit();
 
+                    drawer_layout.closeDrawer(mDrawerList);
+                }
+                if(i==6){
+                    FirebaseAuth.getInstance().signOut();
+                    Intent intent = new Intent(OwnerActivity.this,LoginActivity.class);
+                    startActivity(intent);
+                    finish();
                     drawer_layout.closeDrawer(mDrawerList);
                 }
             }

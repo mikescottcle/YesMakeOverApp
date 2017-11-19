@@ -145,7 +145,7 @@
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
                     android:layout_marginTop="15dp"
-                    android:background="@drawable/curver_btn"
+                    android:background="@drawable/curver_btn_orange"
                     android:text="SUBMIT"
                     android:textColor="#fff" />
 

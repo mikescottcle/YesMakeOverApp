@@ -17,7 +17,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.MainActivity;
+import com.example.ast.carwash_nadeemahmed.Activities.Activities.Model.Add_Customer_Object;
 import com.example.ast.carwash_nadeemahmed.R;
+
+import org.w3c.dom.Text;
 
 /**
  * Created by AST on 9/19/2017.
@@ -28,30 +31,26 @@ public class Payment_Successful extends android.support.v4.app.Fragment {
     public ImageButton floatingActionButton;
     public ImageView floatingMenuItem1;
     public ImageView floatingMenuItem2;
-    public View clist_Back_view,payment_cardone_view,payment_cardtwo_view;
+    public View clist_Back_view, payment_cardone_view, payment_cardtwo_view;
     public static TextView ActionBartitle;
     public Button update_payment;
     public ImageView back_arrow;
-
+    public TextView payment_user_email, payment_parking_base, payment_flat, payment_block, payment_apartment, payment_mobile_no, payment_user_name, payment_invoice_date, payment_park_slot_no;
+    public Add_Customer_Object add_customer_object;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.payment_success,null);
-        Toolbar toolbar= (Toolbar)view.findViewById(R.id.toolbar_outside);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayOptions(0, android.support.v7.app.ActionBar.DISPLAY_SHOW_TITLE);
+        View view = inflater.inflate(R.layout.payment_success, null);
+        initializeView(view);
 
-        ActionBartitle = (TextView)toolbar.findViewById(R.id.main_appbar_textView);
-        ActionBartitle.setText("Payment Successful");
-        clist_Back_view = (View)view.findViewById(R.id.payment_back_view);
-        payment_cardone_view = (View)view.findViewById(R.id.payment_cardone_view);
-        payment_cardtwo_view = (View)view.findViewById(R.id.payment_cardtwo_view);
-        floatingActionButton = (ImageButton)view.findViewById(R.id.payment_list_fab);
-        floatingMenuItem1 = (ImageView)view.findViewById(R.id.payment_share);
-        floatingMenuItem2 = (ImageView)view.findViewById(R.id.payment_download);
-        back_arrow = (ImageView) toolbar.findViewById(R.id.back_image);
+        if (getArguments() != null) {
+            if (getArguments().getParcelable("object") != null) {
+                add_customer_object = getArguments().getParcelable("object");
+                initializeData(add_customer_object);
+            }
+        }
 
         back_arrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +69,10 @@ public class Payment_Successful extends android.support.v4.app.Fragment {
 
         return view;
     }
+
+
+
+
     public void customAnimations() {
         if (floatingMenuItem1.getVisibility() == View.VISIBLE) {
             implementOnCloseAnimations();
@@ -180,5 +183,46 @@ public class Payment_Successful extends android.support.v4.app.Fragment {
         });
 
         animatorSet.start();
+    }
+
+    private void initializeView(View view) {
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar_outside);
+        back_arrow = (ImageView) toolbar.findViewById(R.id.back_image);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayOptions(0, android.support.v7.app.ActionBar.DISPLAY_SHOW_TITLE);
+
+        ActionBartitle = (TextView) toolbar.findViewById(R.id.main_appbar_textView);
+        ActionBartitle.setText("Payment Successful");
+        clist_Back_view = (View) view.findViewById(R.id.payment_back_view);
+        payment_cardone_view = (View) view.findViewById(R.id.payment_cardone_view);
+        payment_cardtwo_view = (View) view.findViewById(R.id.payment_cardtwo_view);
+        floatingActionButton = (ImageButton) view.findViewById(R.id.payment_list_fab);
+        floatingMenuItem1 = (ImageView) view.findViewById(R.id.payment_share);
+        floatingMenuItem2 = (ImageView) view.findViewById(R.id.payment_download);
+        payment_user_email = (TextView) view.findViewById(R.id.payment_user_email);
+        payment_parking_base = (TextView) view.findViewById(R.id.payment_parking_base);
+
+        payment_flat = (TextView) view.findViewById(R.id.payment_flat);
+        payment_block = (TextView) view.findViewById(R.id.payment_block);
+        payment_apartment = (TextView) view.findViewById(R.id.payment_apartment);
+        payment_mobile_no = (TextView) view.findViewById(R.id.payment_mobile_no);
+        payment_user_name = (TextView) view.findViewById(R.id.payment_user_name);
+        payment_invoice_date = (TextView) view.findViewById(R.id.payment_invoice_date);
+        payment_park_slot_no = (TextView) view.findViewById(R.id.payment_park_slot_no);
+
+    }
+
+    private void initializeData(Add_Customer_Object add_customer_object) {
+
+        payment_apartment.setText(add_customer_object.cust_apartment);
+        payment_block.setText(add_customer_object.getCust_block());
+        payment_invoice_date.setText("");
+        payment_mobile_no.setText(add_customer_object.getCust_mobile());
+        payment_user_email.setText(add_customer_object.getCust_email());
+        payment_parking_base.setText(add_customer_object.getCust_parking());
+        payment_user_name.setText(add_customer_object.getCust_name());
+        payment_flat.setText(add_customer_object.getCust_flat());
+        payment_park_slot_no.setText(add_customer_object.getCust_parking_slot());
+
     }
 }

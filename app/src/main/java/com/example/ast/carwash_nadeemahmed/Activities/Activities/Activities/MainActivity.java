@@ -35,25 +35,29 @@ public class MainActivity extends AppCompatActivity {
 
         String user_type = getIntent().getStringExtra("type");
 
-//        if(user_type.equals("user")){
-//            FragmentTransaction transaction = getSupportFragmentManager()
-//                    .beginTransaction();
-//            //   .setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
-//            transaction.replace(R.id.container_main,new Customer_home());
-//            transaction.commit();
-//
-//
-//        }
 
-      //  else if(user_type.equals("admin")){
-            FragmentTransaction transaction = getSupportFragmentManager()
-                    .beginTransaction();
-            //   .setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
-            transaction.replace(R.id.container_main, owner_home);
-            transaction.commit();
+            if (user_type.equals("user")) {
 
-      //  }
+                Customer_home customer_home = new Customer_home();
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("cust", getIntent().getParcelableExtra("cust"));
+                customer_home.setArguments(bundle);
+                FragmentTransaction transaction = getSupportFragmentManager()
+                        .beginTransaction()
+                        .setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
+                transaction.replace(R.id.container_main, customer_home);
+                transaction.commit();
 
+
+            } else if (user_type.equals("admin")) {
+                FragmentTransaction transaction = getSupportFragmentManager()
+                        .beginTransaction();
+                //   .setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
+                transaction.replace(R.id.container_main, owner_home);
+                transaction.commit();
+
+            }
+        
 
 
     }

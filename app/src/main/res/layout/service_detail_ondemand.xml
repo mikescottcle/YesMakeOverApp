@@ -422,7 +422,7 @@
                                             android:textColor="#fff"
                                             android:text="Edit"
                                             android:layout_weight="0.2"
-                                            android:background="@drawable/curver_btn"
+                                            android:background="@drawable/curver_btn_orange"
                                             android:layout_width="74dp"
                                             android:layout_height="18dp" />
 
@@ -491,7 +491,7 @@
                 android:layout_marginLeft="45dp"
                 android:layout_marginRight="45dp"
                 android:text="PAY ONLINE"
-                android:background="@drawable/curver_btn"
+                android:background="@drawable/curver_btn_orange"
                 android:layout_gravity="bottom"
                 android:layout_width="match_parent"
                 android:layout_height="35dp" />

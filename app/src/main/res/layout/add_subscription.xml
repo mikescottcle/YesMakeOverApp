@@ -52,6 +52,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                     <EditText
+                        android:inputType="text"
                         android:id="@+id/vehicle_make"
                         android:textColor="#000"
                         android:textSize="12sp"
@@ -59,6 +60,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                     <EditText
+                        android:inputType="number"
                         android:id="@+id/vehicle_reg_no"
                         android:textColor="#000"
                         android:textSize="12sp"
@@ -159,7 +161,7 @@
                 android:layout_marginLeft="45dp"
                 android:layout_marginRight="45dp"
                 android:text="SAVE"
-                android:background="@drawable/curver_btn"
+                android:background="@drawable/curver_btn_orange"
                 android:layout_gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="35dp" />

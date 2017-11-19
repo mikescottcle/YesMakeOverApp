@@ -3,6 +3,8 @@ package com.example.ast.carwash_nadeemahmed.Activities.Activities.UI;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.app.Dialog;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -31,27 +33,15 @@ public class Message_Fragment extends android.support.v4.app.Fragment {
     public static TextView ActionBartitle;
     public ImageView back_arrow;
     public Button noti_btn;
-
+    public Dialog filterDialog;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.message_layout,null);
+        initializeView(view);
 
-        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar_outside);
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayOptions(0, android.support.v7.app.ActionBar.DISPLAY_SHOW_TITLE);
-
-        ActionBartitle = (TextView) toolbar.findViewById(R.id.main_appbar_textView);
-        ActionBartitle.setText("Messages");
-
-        clist_Back_view = (View) view.findViewById(R.id.clist_back_view);
-        floatingActionButton = (ImageButton) view.findViewById(R.id.notification_list_sort);
-        floatingMenuItem1 = (ImageView) view.findViewById(R.id.floatingMenuItem1);
-        floatingMenuItem2 = (ImageView) view.findViewById(R.id.floatingMenuItem2);
-
-        back_arrow = (ImageView) toolbar.findViewById(R.id.back_image);
 
         back_arrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +75,11 @@ public class Message_Fragment extends android.support.v4.app.Fragment {
             public void onClick(View v) {
 
 //                animations();
+                filterDialog.show();
                 customAnimations();
+
+
+
 
             }
         });
@@ -102,6 +96,27 @@ public class Message_Fragment extends android.support.v4.app.Fragment {
         });
 
         return view;
+    }
+
+    private void initializeView(View view) {
+
+        View completeView = getActivity().getLayoutInflater().inflate(R.layout.filter_dialog, null);
+
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar_outside);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayOptions(0, android.support.v7.app.ActionBar.DISPLAY_SHOW_TITLE);
+
+        ActionBartitle = (TextView) toolbar.findViewById(R.id.main_appbar_textView);
+        ActionBartitle.setText("Messages");
+
+        clist_Back_view = (View) view.findViewById(R.id.clist_back_view);
+        floatingActionButton = (ImageButton) view.findViewById(R.id.notification_list_sort);
+        floatingMenuItem1 = (ImageView) view.findViewById(R.id.floatingMenuItem1);
+        floatingMenuItem2 = (ImageView) view.findViewById(R.id.floatingMenuItem2);
+        filterDialog = new Dialog(getActivity());
+        filterDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        filterDialog.setContentView(completeView);
+        back_arrow = (ImageView) toolbar.findViewById(R.id.back_image);
     }
 
     public void customAnimations() {

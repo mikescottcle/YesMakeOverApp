@@ -108,6 +108,7 @@
                                     android:textSize="12sp"
                                     android:padding="15dp"
                                     android:hint="17926"
+                                    android:id="@+id/apart_msg_spinner"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content" />
 
@@ -136,7 +137,7 @@
         android:layout_marginRight="45dp"
         android:text="SEND"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/curver_btn"
+        android:background="@drawable/curver_btn_orange"
         android:layout_width="match_parent"
         android:layout_height="35dp" />
 

@@ -1,6 +1,7 @@
 package com.example.ast.carwash_nadeemahmed.Activities.Activities.UI;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -20,10 +21,13 @@ import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.Cust
 import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.MainActivity;
 import com.example.ast.carwash_nadeemahmed.Activities.Activities.Model.Add_Customer_Object;
 import com.example.ast.carwash_nadeemahmed.Activities.Activities.Model.Subscription;
+import com.example.ast.carwash_nadeemahmed.Activities.Activities.Utils.AppLogs;
 import com.example.ast.carwash_nadeemahmed.Activities.Activities.Utils.FirebaseHandler;
 import com.example.ast.carwash_nadeemahmed.R;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * Created by AST on 9/16/2017.
@@ -52,6 +56,8 @@ public class Add_Customer extends android.support.v4.app.Fragment {
     public TextView vehicle_make,vehicle_regNo;
     DatabaseReference reference;
     public String key;
+    public LinearLayout subscription_container;
+
    // Add_Customer_Object add_customer_object;
     @Nullable
     @Override
@@ -66,7 +72,7 @@ public class Add_Customer extends android.support.v4.app.Fragment {
         if (getArguments() != null) {
             if (getArguments().getParcelable("object") != null) {
                 add_customer_object = getArguments().getParcelable("object");
-                subscription = add_customer_object.getSubscription();
+              //  subscription = add_customer_object.getSubscription();
                 customer_name.setText(add_customer_object.getCust_name());
                 customer_flat.setText(add_customer_object.getCust_flat());
                 customer_email.setText(add_customer_object.getCust_email());
@@ -75,8 +81,8 @@ public class Add_Customer extends android.support.v4.app.Fragment {
                 customer_parking_spinner.setSelection(adapterParkingName.getPosition(add_customer_object.getCust_parking()));
                 spinner_block.setSelection(adapterBlockName.getPosition(add_customer_object.getCust_block()));
                 spiner_apartment.setSelection(adapterApartmentName.getPosition(add_customer_object.getCust_apartment()));
-                vehicle_make.setText(add_customer_object.getSubscription().getVehicle_make());
-                vehicle_regNo.setText(add_customer_object.getSubscription().getVehicle_Reg_no());
+            //    vehicle_make.setText(add_customer_object.getSubscription().getVehicle_make());
+             //   vehicle_regNo.setText(add_customer_object.getSubscription().getVehicle_Reg_no());
                 key = add_customer_object.getCust_Uid().toString();
             }
 
@@ -91,6 +97,28 @@ public class Add_Customer extends android.support.v4.app.Fragment {
             }
         });
 
+        FirebaseHandler.getInstance().getCustomer_subscription().child(key).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot!=null){
+                    if(dataSnapshot.getValue()!=null){
+                        AppLogs.d("TAG_SNAP",dataSnapshot.getValue().toString());
+                        int i = 0;
+                        for (DataSnapshot data : dataSnapshot.getChildren()) {
+                             subscription = data.getValue(Subscription.class);
+                            subscription_container.addView(addLayout(i,subscription));
+                            i++;
+                        }
+
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         add_subscription.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,12 +129,12 @@ public class Add_Customer extends android.support.v4.app.Fragment {
                             customer_name.getText().toString(), customer_mobile.getText().toString(),
                             spiner_apartment.getSelectedItem().toString(), customer_parking_slot_not.getText().toString(),
                             spinner_block.getSelectedItem().toString(), customer_email.getText().toString(), customer_flat.getText().toString()
-                            , customer_parking_spinner.getSelectedItem().toString(), subscription, key, ""
+                            , customer_parking_spinner.getSelectedItem().toString(),key, ""
                     );
                     Bundle bundle = new Bundle();
                     bundle.putParcelable("object",add_customer_object);
                     add_subscription.setArguments(bundle);
-             //   }
+
                 getFragmentManager().beginTransaction()
                         .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
                         .addToBackStack(null)
@@ -120,23 +148,25 @@ public class Add_Customer extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View view) {
 
-                if (subscription != null) {
+              //  if (subscription != null) {
                     if (customer_name.getText().toString().equals("")) {
                         Snackbar.make(view, "Add customer_name First", Snackbar.LENGTH_LONG).show();
-                    } else if (customer_mobile.getText().toString().equals("")) {
-                        Snackbar.make(view, "Add customer_mobile First", Snackbar.LENGTH_LONG).show();
+                    } else if (customer_mobile.getText().toString().length()==0 || customer_mobile.getText().toString().length() < 10 || customer_mobile.getText().toString().length() >10) {
+                        Snackbar.make(view, "Please enter valid Mobile Number", Snackbar.LENGTH_LONG).show();
                     } else if (customer_parking_slot_not.getText().toString().equals("")) {
                         Snackbar.make(view, "Add customer_parking_slot_not First", Snackbar.LENGTH_LONG).show();
-                    } else if (customer_email.getText().toString().equals("")) {
+                    } else if (customer_email.getText().toString().equals("") && !android.util.Patterns.EMAIL_ADDRESS.matcher(customer_email.getText().toString()).matches()) {
                         Snackbar.make(view, "Add customer_email First", Snackbar.LENGTH_LONG).show();
                     } else if (customer_flat.getText().toString().equals("")) {
                         Snackbar.make(view, "Add customer_flat First", Snackbar.LENGTH_LONG).show();
                     } else {
+
+
                           add_customer_object = new Add_Customer_Object(
                                 customer_name.getText().toString(), customer_mobile.getText().toString(),
                                 spiner_apartment.getSelectedItem().toString(), customer_parking_slot_not.getText().toString(),
                                 spinner_block.getSelectedItem().toString(), customer_email.getText().toString(), customer_flat.getText().toString()
-                                , customer_parking_spinner.getSelectedItem().toString(), subscription, key, ""
+                                , customer_parking_spinner.getSelectedItem().toString(),key,""
                         );
 
 
@@ -149,7 +179,8 @@ public class Add_Customer extends android.support.v4.app.Fragment {
                                         Bundle bundle = new Bundle();
                                         bundle.putParcelable("object", add_customer_object);
                                         customer_detail.setArguments(bundle);
-                                        getFragmentManager().beginTransaction()
+                                        getActivity().getSupportFragmentManager().popBackStack();
+                                        getActivity().getSupportFragmentManager().beginTransaction()
                                                 .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
                                                 //   .addToBackStack(null)
                                                 .replace(R.id.customer_container, customer_detail).commit();
@@ -158,14 +189,59 @@ public class Add_Customer extends android.support.v4.app.Fragment {
 
 
                     }
-                } else {
-                    Snackbar.make(view, "Add Subscription First", Snackbar.LENGTH_LONG).show();
-                }
+               // }
+              //  else {
+               //     Snackbar.make(view, "Add Subscription First", Snackbar.LENGTH_LONG).show();
+              //  }
             }
         });
 
 
         return view;
+    }
+
+    private View addLayout(int i, Subscription data) {
+        LayoutInflater inflater = LayoutInflater.from(getActivity());
+        final LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.subscription_container, null, false);
+
+        layout.setTag(data);
+
+            vehicle_make = (TextView)layout.findViewById(R.id.vehicle_make);
+         vehicle_regNo = (TextView)layout.findViewById(R.id.vehicle_reg_no);
+
+
+           vehicle_make.setText(data.getVehicle_make());
+           vehicle_regNo.setText(data.getVehicle_Reg_no());
+
+        layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Add_Subscription add_subscription = new Add_Subscription();
+                //  if (add_customer_object!=null) {
+                add_customer_object = new Add_Customer_Object(
+                        customer_name.getText().toString(), customer_mobile.getText().toString(),
+                        spiner_apartment.getSelectedItem().toString(), customer_parking_slot_not.getText().toString(),
+                        spinner_block.getSelectedItem().toString(), customer_email.getText().toString(), customer_flat.getText().toString()
+                        , customer_parking_spinner.getSelectedItem().toString(),key, ""
+                );
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("object",add_customer_object);
+                bundle.putParcelable("subs", (Parcelable) layout.getTag());
+                add_subscription.setArguments(bundle);
+                //   }
+                getFragmentManager().beginTransaction()
+                        .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
+                        .addToBackStack(null)
+                        .replace(R.id.customer_container, add_subscription).commit();
+            }
+        });
+
+
+
+      //  LinearLayout linear = (LinearLayout)findViewById(R.id.myLayout);
+       // linear.addView(layout);
+
+        return layout;
     }
 
 
@@ -190,7 +266,7 @@ public class Add_Customer extends android.support.v4.app.Fragment {
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar_outside);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayOptions(0, android.support.v7.app.ActionBar.DISPLAY_SHOW_TITLE);
-
+        subscription_container = (LinearLayout)view.findViewById(R.id.subscription_container);
         ActionBartitle = (TextView) toolbar.findViewById(R.id.main_appbar_textView);
         ActionBartitle.setText("Add Customers");
         add_customer_btn = (Button) view.findViewById(R.id.add_customer_btn);
@@ -203,7 +279,7 @@ public class Add_Customer extends android.support.v4.app.Fragment {
         spinner_block = (Spinner) view.findViewById(R.id.spinner_block);
         customer_parking_spinner = (Spinner) view.findViewById(R.id.customer_parking_spinner);
         back_arrow = (ImageView) toolbar.findViewById(R.id.back_image);
-        vehicle_make = (TextView)view.findViewById(R.id.vehicle_make);
-        vehicle_regNo = (TextView)view.findViewById(R.id.vehicle_reg_no);
+
+
     }
 }

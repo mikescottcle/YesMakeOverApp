@@ -18,7 +18,7 @@
         android:id="@+id/toolbar_outside"
         layout="@layout/toolbar" />
 
-    <LinearLayout
+    <RelativeLayout
         android:background="#039be5"
         android:id="@+id/list_search"
         android:layout_below="@id/toolbar_outside"
@@ -26,6 +26,7 @@
         android:layout_height="wrap_content">
 
         <EditText
+            android:id="@+id/customer_list_search"
             android:textColor="#fff"
             android:textSize="12sp"
             android:layout_marginLeft="15dp"
@@ -36,14 +37,23 @@
             android:drawablePadding="10dp"
             android:paddingEnd="15dp"
             android:paddingStart="20dp"
-            android:drawableRight="@mipmap/custlist_cross"
             android:drawableLeft="@mipmap/search"
             android:background="@drawable/circular_edittext"
             android:layout_width="match_parent"
-            android:layout_height="30dp" />
+            android:layout_height="35dp" />
 
+        <ImageView
+            android:padding="5dp"
+            android:visibility="invisible"
+            android:id="@+id/remove_search"
+            android:layout_marginTop="6dp"
+            android:layout_marginRight="25dp"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/custlist_cross"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 
     <ListView
@@ -81,7 +91,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/customer_list_sort"
             android:layout_width="wrap_content"
             android:background="@mipmap/sort_btn"

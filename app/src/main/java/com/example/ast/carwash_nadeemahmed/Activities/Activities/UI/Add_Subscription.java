@@ -28,6 +28,9 @@ import com.example.ast.carwash_nadeemahmed.Activities.Activities.Model.Add_Custo
 import com.example.ast.carwash_nadeemahmed.Activities.Activities.Model.Subscription;
 import com.example.ast.carwash_nadeemahmed.Activities.Activities.Utils.FirebaseHandler;
 import com.example.ast.carwash_nadeemahmed.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -45,10 +48,13 @@ public class Add_Subscription extends android.support.v4.app.Fragment {
     public EditText vehicle_make, vehicle_reg_no, subs_end_date, subs_start_date;
     public RadioButton hold_subscription, resume_subscription, default_subscription;
     public String vehicleType[] = {"Small Car", "Car", "Heavy Car"};
-    Calendar myCalendarStart,myCalendarEnd;
+    Calendar myCalendarStart, myCalendarEnd;
     public Button add_subscription_btn;
     Subscription subscription;
     Add_Customer_Object add_customer_object;
+    public String key;
+    DatePickerDialog datePickerDialogStart;
+    DatePickerDialog datePickerDialogEnd;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Nullable
@@ -60,13 +66,17 @@ public class Add_Subscription extends android.support.v4.app.Fragment {
         myCalendarStart = Calendar.getInstance();
         myCalendarEnd = Calendar.getInstance();
 
-        if(getArguments()!=null){
-            add_customer_object = getArguments().getParcelable("object");
-            subscription = add_customer_object.getSubscription();
-            if(subscription!=null) {
+        if (getArguments() != null) {
+            if (getArguments().getParcelable("object") != null) {
+                add_customer_object = getArguments().getParcelable("object");
+                key = add_customer_object.getCust_Uid();
+            }
+
+            if (getArguments().getParcelable("subs") != null) {
+                subscription = getArguments().getParcelable("subs");
                 vehicle_make.setText(subscription.getVehicle_make());
                 vehicle_reg_no.setText(subscription.getVehicle_Reg_no());
-
+                key = subscription.getCust_sub_uid();
                 String myFormat = "dd/MM/yy"; //In which you need put here
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
@@ -78,15 +88,12 @@ public class Add_Subscription extends android.support.v4.app.Fragment {
                 myCalendarStart.setTimeInMillis(subscription.getSubsription_start_date());
                 myCalendarEnd.setTimeInMillis(subscription.getSubsription_end_date());
             }
-//
         }
 
 
         ArrayAdapter<String> adapterVehicleName = new ArrayAdapter<String>(
                 getActivity(), android.R.layout.simple_spinner_item, vehicleType);
         vehicle_type_spinner.setAdapter(adapterVehicleName);
-
-
 
 
         final DatePickerDialog.OnDateSetListener dateStart = new DatePickerDialog.OnDateSetListener() {
@@ -124,9 +131,23 @@ public class Add_Subscription extends android.support.v4.app.Fragment {
 
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
 //your co
-                    new DatePickerDialog(getActivity(), dateStart, myCalendarStart
+                    datePickerDialogStart = new DatePickerDialog(getActivity(), dateStart, myCalendarStart
                             .get(Calendar.YEAR), myCalendarStart.get(Calendar.MONTH),
-                            myCalendarStart.get(Calendar.DAY_OF_MONTH)).show();
+                            myCalendarStart.get(Calendar.DAY_OF_MONTH));
+                    if(datePickerDialogEnd !=null) {
+
+                        int day = datePickerDialogEnd.getDatePicker().getDayOfMonth();
+                        int month = datePickerDialogEnd.getDatePicker().getMonth();
+                        int year = datePickerDialogEnd.getDatePicker().getYear();
+
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.set(year, month, day);
+                        datePickerDialogStart.getDatePicker().setMaxDate(calendar.getTimeInMillis() - 10000);
+
+                    }
+
+                    datePickerDialogStart.show();
+
                     return true;
 
                 }
@@ -138,11 +159,22 @@ public class Add_Subscription extends android.support.v4.app.Fragment {
         subs_end_date.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                new DatePickerDialog(getActivity(), dateEnd, myCalendarEnd
-                        .get(Calendar.YEAR), myCalendarEnd.get(Calendar.MONTH),
-                        myCalendarEnd.get(Calendar.DAY_OF_MONTH)).show();
+                    datePickerDialogEnd = new DatePickerDialog(getActivity(), dateEnd, myCalendarEnd
+                            .get(Calendar.YEAR), myCalendarEnd.get(Calendar.MONTH),
+                            myCalendarEnd.get(Calendar.DAY_OF_MONTH));
+                   if(datePickerDialogStart !=null) {
+                       int day = datePickerDialogStart.getDatePicker().getDayOfMonth();
+                       int month = datePickerDialogStart.getDatePicker().getMonth();
+                       int year = datePickerDialogStart.getDatePicker().getYear();
+
+                       Calendar calendar = Calendar.getInstance();
+                       calendar.set(year, month, day);
+                       datePickerDialogEnd.getDatePicker().setMinDate(calendar.getTimeInMillis() + 10000);
+                   }
+                    datePickerDialogEnd.show();
+
+
                     return true;
                 }
                 return false;
@@ -160,36 +192,52 @@ public class Add_Subscription extends android.support.v4.app.Fragment {
         add_subscription_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(vehicle_make.getText().toString().equals("")){
-                    Snackbar.make(view,"Vehicle Make is Required Field!",Snackbar.LENGTH_SHORT).show();
+                if (vehicle_make.getText().toString().equals("")) {
+                    Snackbar.make(view, "Vehicle Make is Required Field!", Snackbar.LENGTH_SHORT).show();
 
-                }else if(vehicle_reg_no.getText().toString().equals("")){
-                    Snackbar.make(view,"Vehicle Reg No Required!",Snackbar.LENGTH_SHORT).show();
+                } else if (vehicle_reg_no.getText().toString().equals("")) {
+                    Snackbar.make(view, "Vehicle Reg No Required!", Snackbar.LENGTH_SHORT).show();
 
-                }else if((!hold_subscription.isChecked() && !resume_subscription.isChecked() && !default_subscription.isChecked())){
-                    Snackbar.make(view,"Subscription is Required Field",Snackbar.LENGTH_SHORT).show();
+                } else if ((!hold_subscription.isChecked() && !resume_subscription.isChecked() && !default_subscription.isChecked())) {
+                    Snackbar.make(view, "Subscription is Required Field", Snackbar.LENGTH_SHORT).show();
 
-                }else if(subs_start_date.getText().toString().equals("")){
-                    Snackbar.make(view,"Start Date is Required",Snackbar.LENGTH_SHORT).show();
+                } else if (subs_start_date.getText().toString().equals("")) {
+                    Snackbar.make(view, "Start Date is Required", Snackbar.LENGTH_SHORT).show();
 
-                }else if(subs_end_date.getText().toString().equals("")){
-                    Snackbar.make(view,"End Date is Required",Snackbar.LENGTH_SHORT).show();
+                } else if (subs_end_date.getText().toString().equals("")) {
+                    Snackbar.make(view, "End Date is Required", Snackbar.LENGTH_SHORT).show();
 
-                }else{
-                     subscription = new Subscription(vehicle_type_spinner.getSelectedItem().toString()
-                    ,vehicle_make.getText().toString(),vehicle_reg_no.getText().toString()
-                            ,myCalendarStart.getTimeInMillis(),hold_subscription.isChecked(),resume_subscription.isChecked()
-                            ,default_subscription.isChecked(),myCalendarEnd.getTimeInMillis());
-                add_customer_object.setSubscription(subscription);
-                   Bundle bundle = new Bundle();
-                    Add_Customer add_customer = new Add_Customer();
-                    bundle.putParcelable("object",add_customer_object);
-                    add_customer.setArguments(bundle);
-                    getFragmentManager().beginTransaction()
-                            .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
-                            .addToBackStack(null)
-                            .replace(R.id.customer_container,add_customer).commit();
+                } else {
+                    DatabaseReference reference;
+                    String subkey;
+                    if (subscription == null) {
+                        reference = FirebaseHandler.getInstance().getCustomer_subscription().child(key).push();
+                        subkey = reference.getKey();
+                    } else {
+                        subkey = subscription.getSubs_uid();
+                    }
+                    subscription = new Subscription(vehicle_type_spinner.getSelectedItem().toString()
+                            , vehicle_make.getText().toString(), vehicle_reg_no.getText().toString()
+                            , myCalendarStart.getTimeInMillis(), hold_subscription.isChecked(), resume_subscription.isChecked()
+                            , default_subscription.isChecked(), myCalendarEnd.getTimeInMillis(), subkey, key);
+                    //    add_customer_object.setSubscription(subscription);
 
+                    FirebaseHandler.getInstance().getCustomer_subscription()
+                            .child(key).child(subkey).setValue(subscription, new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                            Bundle bundle = new Bundle();
+                            Add_Customer add_customer = new Add_Customer();
+                            bundle.putParcelable("object", add_customer_object);
+                            add_customer.setArguments(bundle);
+                            getActivity().getSupportFragmentManager().popBackStack();
+                            getActivity().getSupportFragmentManager().beginTransaction()
+                                    .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
+                                    .addToBackStack(null)
+                                    .replace(R.id.customer_container, add_customer).commit();
+
+                        }
+                    });
 
 
                 }
@@ -217,7 +265,7 @@ public class Add_Subscription extends android.support.v4.app.Fragment {
         resume_subscription = (RadioButton) view.findViewById(R.id.resume_subscription);
         default_subscription = (RadioButton) view.findViewById(R.id.default_subscription);
         subs_end_date = (EditText) view.findViewById(R.id.subs_end_date);
-        add_subscription_btn = (Button)view.findViewById(R.id.add_subscription_btn);
+        add_subscription_btn = (Button) view.findViewById(R.id.add_subscription_btn);
         subs_start_date.setShowSoftInputOnFocus(false);
         subs_end_date.setShowSoftInputOnFocus(false);
     }

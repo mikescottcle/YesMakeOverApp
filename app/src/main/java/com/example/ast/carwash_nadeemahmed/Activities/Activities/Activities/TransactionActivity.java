@@ -1,11 +1,15 @@
 package com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities;
 
+import android.os.Build;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ListView;
@@ -38,6 +42,14 @@ public class TransactionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction);
+        if (Build.VERSION.SDK_INT >= 21) {
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            Window window = TransactionActivity.this.getWindow();
+            window.setStatusBarColor(ContextCompat.getColor(TransactionActivity.this, R.color.colorWhite));
+
+//            mayRequestContacts();
+//
+        }
         transaction_container = (FrameLayout)findViewById(R.id.transaction_container);
         transactionActivity = this;
 

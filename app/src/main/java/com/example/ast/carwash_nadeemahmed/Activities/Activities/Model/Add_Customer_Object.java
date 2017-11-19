@@ -3,6 +3,8 @@ package com.example.ast.carwash_nadeemahmed.Activities.Activities.Model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+
 /**
  * Created by AST on 10/10/2017.
  */
@@ -16,14 +18,13 @@ public class Add_Customer_Object implements Parcelable {
     public String cust_email;
     public String cust_flat;
     public String cust_parking;
-    public Subscription subscription;
     public String cust_Uid;
     public String cust_imagUrl;
 
     public Add_Customer_Object() {
     }
 
-    public Add_Customer_Object(String cust_name, String cust_mobile, String cust_apartment, String cust_parking_slot, String cust_block, String cust_email, String cust_flat, String cust_parking, Subscription subscription, String cust_Uid, String cust_imagUrl) {
+    public Add_Customer_Object(String cust_name, String cust_mobile, String cust_apartment, String cust_parking_slot, String cust_block, String cust_email, String cust_flat, String cust_parking,String cust_Uid, String cust_imagUrl) {
         this.cust_name = cust_name;
         this.cust_mobile = cust_mobile;
         this.cust_apartment = cust_apartment;
@@ -32,7 +33,6 @@ public class Add_Customer_Object implements Parcelable {
         this.cust_email = cust_email;
         this.cust_flat = cust_flat;
         this.cust_parking = cust_parking;
-        this.subscription = subscription;
         this.cust_Uid = cust_Uid;
         this.cust_imagUrl = cust_imagUrl;
     }
@@ -47,7 +47,6 @@ public class Add_Customer_Object implements Parcelable {
         cust_email = in.readString();
         cust_flat = in.readString();
         cust_parking = in.readString();
-        subscription = in.readParcelable(Subscription.class.getClassLoader());
         cust_Uid = in.readString();
         cust_imagUrl = in.readString();
     }
@@ -62,7 +61,6 @@ public class Add_Customer_Object implements Parcelable {
         dest.writeString(cust_email);
         dest.writeString(cust_flat);
         dest.writeString(cust_parking);
-        dest.writeParcelable(subscription, flags);
         dest.writeString(cust_Uid);
         dest.writeString(cust_imagUrl);
     }
@@ -146,14 +144,6 @@ public class Add_Customer_Object implements Parcelable {
 
     public void setCust_parking(String cust_parking) {
         this.cust_parking = cust_parking;
-    }
-
-    public Subscription getSubscription() {
-        return subscription;
-    }
-
-    public void setSubscription(Subscription subscription) {
-        this.subscription = subscription;
     }
 
     public String getCust_Uid() {

@@ -17,12 +17,13 @@ public class Subscription implements Parcelable {
     public boolean resume_subscription;
     public boolean default_subscription;
     public long subsription_end_date;
-
+    public String subs_uid;
+    public String cust_sub_uid;
 
     public Subscription() {
     }
 
-    public Subscription(String vehicle_type, String vehicle_make, String vehicle_Reg_no, long subsription_start_date, boolean hold_subscription, boolean resume_subscription, boolean default_subscription, long subsription_end_date) {
+    public Subscription(String vehicle_type, String vehicle_make, String vehicle_Reg_no, long subsription_start_date, boolean hold_subscription, boolean resume_subscription, boolean default_subscription, long subsription_end_date, String subs_uid, String cust_sub_uid) {
         this.vehicle_type = vehicle_type;
         this.vehicle_make = vehicle_make;
         this.vehicle_Reg_no = vehicle_Reg_no;
@@ -31,6 +32,8 @@ public class Subscription implements Parcelable {
         this.resume_subscription = resume_subscription;
         this.default_subscription = default_subscription;
         this.subsription_end_date = subsription_end_date;
+        this.subs_uid = subs_uid;
+        this.cust_sub_uid = cust_sub_uid;
     }
 
     protected Subscription(Parcel in) {
@@ -42,6 +45,27 @@ public class Subscription implements Parcelable {
         resume_subscription = in.readByte() != 0;
         default_subscription = in.readByte() != 0;
         subsription_end_date = in.readLong();
+        subs_uid = in.readString();
+        cust_sub_uid = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(vehicle_type);
+        dest.writeString(vehicle_make);
+        dest.writeString(vehicle_Reg_no);
+        dest.writeLong(subsription_start_date);
+        dest.writeByte((byte) (hold_subscription ? 1 : 0));
+        dest.writeByte((byte) (resume_subscription ? 1 : 0));
+        dest.writeByte((byte) (default_subscription ? 1 : 0));
+        dest.writeLong(subsription_end_date);
+        dest.writeString(subs_uid);
+        dest.writeString(cust_sub_uid);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<Subscription> CREATOR = new Creator<Subscription>() {
@@ -55,6 +79,22 @@ public class Subscription implements Parcelable {
             return new Subscription[size];
         }
     };
+
+    public String getSubs_uid() {
+        return subs_uid;
+    }
+
+    public void setSubs_uid(String subs_uid) {
+        this.subs_uid = subs_uid;
+    }
+
+    public String getCust_sub_uid() {
+        return cust_sub_uid;
+    }
+
+    public void setCust_sub_uid(String cust_sub_uid) {
+        this.cust_sub_uid = cust_sub_uid;
+    }
 
     public String getVehicle_type() {
         return vehicle_type;
@@ -120,20 +160,4 @@ public class Subscription implements Parcelable {
         this.subsription_end_date = subsription_end_date;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(vehicle_type);
-        parcel.writeString(vehicle_make);
-        parcel.writeString(vehicle_Reg_no);
-        parcel.writeLong(subsription_start_date);
-        parcel.writeByte((byte) (hold_subscription ? 1 : 0));
-        parcel.writeByte((byte) (resume_subscription ? 1 : 0));
-        parcel.writeByte((byte) (default_subscription ? 1 : 0));
-        parcel.writeLong(subsription_end_date);
-    }
 }

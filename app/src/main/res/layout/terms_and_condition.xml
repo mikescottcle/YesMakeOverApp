@@ -62,11 +62,11 @@
                 android:textColor="#fff"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
-                android:text="Save"
-                android:background="@drawable/curver_btn"
+                android:text="DONE"
+                android:background="@drawable/curver_btn_orange"
                 android:layout_gravity="bottom"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="34dp" />
 
 
         </LinearLayout>

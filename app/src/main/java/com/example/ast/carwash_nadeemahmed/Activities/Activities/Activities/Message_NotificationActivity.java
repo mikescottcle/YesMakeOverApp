@@ -1,11 +1,15 @@
 package com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities;
 
+import android.os.Build;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ListView;
@@ -39,7 +43,14 @@ public class Message_NotificationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message__notification);
+        if (Build.VERSION.SDK_INT >= 21) {
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            Window window = Message_NotificationActivity.this.getWindow();
+            window.setStatusBarColor(ContextCompat.getColor(Message_NotificationActivity.this, R.color.colorWhite));
 
+//            mayRequestContacts();
+//
+        }
         message_notificationActivity = this;
 
         message_container = (FrameLayout)findViewById(R.id.message_container);

@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 
 import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.ComplaintActivity;
 import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.CustomerActivity;
+import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.LoginActivity;
 import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.Message_NotificationActivity;
 import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.ProfileActivity;
 import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.ServiceActivity;
@@ -24,6 +25,7 @@ import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.Tran
 import com.example.ast.carwash_nadeemahmed.Activities.Activities.Adapters.Navigations_ItemsAdapter;
 import com.example.ast.carwash_nadeemahmed.Activities.Activities.Adapters.OnSwipeTouchListener;
 import com.example.ast.carwash_nadeemahmed.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 /**
  * Created by AST on 9/13/2017.
@@ -37,8 +39,8 @@ public class Owner_Home extends android.support.v4.app.Fragment {
     public ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
     public RelativeLayout main_view;
-    public String[] menuName= {"Change Password","Terms & Conditions","Send Messages","Add Customer","Pay Bill Online"};
-    public int[] menuIcons = {R.mipmap.change_password,R.mipmap.menu_terms_and_conditions,R.mipmap.send_message,R.mipmap.add_customer,R.mipmap.pay_bill};
+    public String[] menuName= {"Change Password","Terms & Conditions","Send Messages","Add Customer","Pay Bill Online","Log Out"};
+    public int[] menuIcons = {R.mipmap.change_password,R.mipmap.menu_terms_and_conditions,R.mipmap.send_message,R.mipmap.add_customer,R.mipmap.pay_bill,R.mipmap.add_customer};
     public CardView transactionCard,CustomerCard,ComplaintCard,ServicesCard,NotificationCard,ProfileCard;
 
 
@@ -225,6 +227,13 @@ public class Owner_Home extends android.support.v4.app.Fragment {
                             .addToBackStack(null)
                             .add(R.id.container_main, new Send_Message()).commit();
 
+                    drawer_layout.closeDrawer(mDrawerList);
+                }
+                if(i==6){
+                    FirebaseAuth.getInstance().signOut();
+                    Intent intent = new Intent(getActivity(),LoginActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
                     drawer_layout.closeDrawer(mDrawerList);
                 }
             }

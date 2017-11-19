@@ -24,7 +24,15 @@ public class FirebaseHandler {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private StorageReference mfirebaseStorage;
     private DatabaseReference activities_seen_by_user;
-
+    private DatabaseReference add_apartment;
+    private DatabaseReference add_supervisor;
+    private DatabaseReference customer_subscription;
+    private DatabaseReference add_blocks;
+    public DatabaseReference appartment_segments;
+    public DatabaseReference add_parking;
+    public DatabaseReference add_owner_serivces;
+    public DatabaseReference add_vehicle_type;
+    public DatabaseReference apartment_on_demand_service;
 
 
     public static FirebaseHandler getInstance() {
@@ -55,7 +63,15 @@ public class FirebaseHandler {
         usersRef = firebaseRef.child("users");
         add_customer = firebaseRef.child("customer");
         activities_seen_by_user = firebaseRef.child("activities-seen-by-user");
-       // user_takeit_post = firebaseRef.child("user-takeit-post");
+        add_apartment = firebaseRef.child("add_apartment");
+        add_supervisor = firebaseRef.child("add_supervisor");
+        customer_subscription = firebaseRef.child("customer_subscription");
+        add_blocks = firebaseRef.child("add_blocks");
+        appartment_segments = firebaseRef.child("apartment_segments");
+        add_parking = firebaseRef.child("add_parkings");
+        add_owner_serivces  = firebaseRef.child("add_owner_services");
+        add_vehicle_type = firebaseRef.child("add_vehicle_type");
+        apartment_on_demand_service = firebaseRef.child("apartment_ondemand_service");
     }
 
 
@@ -83,5 +99,41 @@ public class FirebaseHandler {
     public DatabaseReference getActivitiesSeenByUser() {
 
         return activities_seen_by_user;
+    }
+
+    public DatabaseReference getAdd_apartment() {
+        return add_apartment;
+    }
+
+    public DatabaseReference getAdd_supervisor() {
+        return add_supervisor;
+    }
+
+    public DatabaseReference getCustomer_subscription() {
+        return customer_subscription;
+    }
+
+    public DatabaseReference getAdd_blocks() {
+        return add_blocks;
+    }
+
+    public DatabaseReference getAppartment_segments() {
+        return appartment_segments;
+    }
+
+    public DatabaseReference getAdd_parking() {
+        return add_parking;
+    }
+
+    public DatabaseReference getAdd_owner_serivces() {
+        return add_owner_serivces;
+    }
+
+    public DatabaseReference getAdd_vehicle_type() {
+        return add_vehicle_type;
+    }
+
+    public DatabaseReference getApartment_on_demand_service() {
+        return apartment_on_demand_service;
     }
 }

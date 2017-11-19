@@ -1,5 +1,7 @@
 package com.example.ast.carwash_nadeemahmed.Activities.Activities.UI;
 
+import android.app.Dialog;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -28,20 +30,15 @@ public class Service_Details_onRegular extends android.support.v4.app.Fragment {
     public ImageView back_arrow;
     public Button done_regular_service;
 
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.service_detail_onregular,null);
-        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar_outside);
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayOptions(0, android.support.v7.app.ActionBar.DISPLAY_SHOW_TITLE);
+        initializeView(view);
 
-        ActionBartitle = (TextView) toolbar.findViewById(R.id.main_appbar_textView);
-        ActionBartitle.setText("Service Details");
-
-        back_arrow = (ImageView) toolbar.findViewById(R.id.back_image);
-        done_regular_service = (Button)view.findViewById(R.id.done_regular_service);
         back_arrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,5 +72,18 @@ public class Service_Details_onRegular extends android.support.v4.app.Fragment {
         });
 
         return view;
+    }
+
+    private void initializeView(View view) {
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar_outside);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayOptions(0, android.support.v7.app.ActionBar.DISPLAY_SHOW_TITLE);
+
+        ActionBartitle = (TextView) toolbar.findViewById(R.id.main_appbar_textView);
+        ActionBartitle.setText("Service Details");
+
+        back_arrow = (ImageView) toolbar.findViewById(R.id.back_image);
+        done_regular_service = (Button)view.findViewById(R.id.done_regular_service);
+
     }
 }

@@ -404,7 +404,7 @@
                 android:layout_marginLeft="45dp"
                 android:layout_marginRight="45dp"
                 android:text="SUBMIT"
-                android:background="@drawable/curver_btn"
+                android:background="@drawable/curver_btn_orange"
                 android:layout_gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="35dp" />

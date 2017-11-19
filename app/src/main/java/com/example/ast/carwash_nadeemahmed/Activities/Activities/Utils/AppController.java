@@ -22,6 +22,10 @@ public class AppController extends Application {
 
     }
 
+    public static Context getContext(){
+        return context;
+    }
+
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);

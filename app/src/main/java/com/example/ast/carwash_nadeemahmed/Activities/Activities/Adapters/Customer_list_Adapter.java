@@ -26,10 +26,13 @@ public class Customer_list_Adapter extends BaseAdapter {
 
     public ArrayList<Add_Customer_Object> userModels;
     public Context mContext;
+    public int mCurrentfilterLength;
+    public ArrayList<Add_Customer_Object> backUplist;
 
     public Customer_list_Adapter(ArrayList<Add_Customer_Object> userModels, Context mContext) {
         this.userModels = userModels;
         this.mContext = mContext;
+        this.backUplist = new ArrayList<>(userModels);
     }
 
     @Override
@@ -51,25 +54,82 @@ public class Customer_list_Adapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
 
         LayoutInflater layoutInflater = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View vieww = layoutInflater.inflate(R.layout.cust_list_adapter,null);
+    //    View custom_view = layoutInflater.inflate(R.layout.cust_list_adapter,null);
 
-        CircleImageView cust_adapter_image = (CircleImageView)vieww.findViewById(R.id.cust_adapter_image);
-        TextView cust_adapter_user_name = (TextView)vieww.findViewById(R.id.cust_adapter_name);
-        TextView cust_adapter_user_app = (TextView)vieww.findViewById(R.id.cust_adapter_app_name);
-        TextView cust_adapter_rupee = (TextView)vieww.findViewById(R.id.cust_rupee_adapter);
-        TextView cust_adapter_block = (TextView)vieww.findViewById(R.id.cust_adapter_block);
+
+        ViewHolder viewHolder ;
+        if(view == null){
+            view =  layoutInflater.inflate(R.layout.cust_list_adapter,null);
+            viewHolder = new ViewHolder();
+            viewHolder.cust_adapter_image = (CircleImageView)view.findViewById(R.id.cust_adapter_image);
+            viewHolder.cust_adapter_user_name = (TextView)view.findViewById(R.id.cust_adapter_name);
+            viewHolder.cust_adapter_user_app = (TextView)view.findViewById(R.id.cust_adapter_app_name);
+            viewHolder.cust_adapter_rupee = (TextView)view.findViewById(R.id.cust_rupee_adapter);
+            viewHolder.cust_adapter_block = (TextView)view.findViewById(R.id.cust_adapter_block);
+            viewHolder.flat_no = (TextView)view.findViewById(R.id.flat_no);
+            view.setTag(viewHolder);
+        }
+        else {
+            viewHolder = (ViewHolder) view.getTag();
+        }
+
+
+
+
 
         Add_Customer_Object add_customer_object = userModels.get(i);
 
 
-        Glide.with(mContext).load(add_customer_object.getCust_imagUrl()).placeholder(R.drawable.user).fitCenter().into(cust_adapter_image);
-        cust_adapter_block.setText(add_customer_object.getCust_block());
-        cust_adapter_rupee.setText("$700");
-        cust_adapter_user_app.setText(add_customer_object.getCust_apartment());
-        cust_adapter_user_name.setText(add_customer_object.getCust_name());
+        Glide.with(mContext).load(add_customer_object.getCust_imagUrl()).placeholder(R.drawable.user).fitCenter().into(viewHolder.cust_adapter_image);
+        viewHolder.cust_adapter_block.setText(add_customer_object.getCust_block());
+        viewHolder.cust_adapter_rupee.setText("$700");
+        viewHolder.cust_adapter_user_app.setText(add_customer_object.getCust_apartment());
+        viewHolder.cust_adapter_user_name.setText(add_customer_object.getCust_name());
+        viewHolder.flat_no.setText("#"+add_customer_object.getCust_flat());
 
 
 
-        return vieww;
+        return view;
+    }
+
+    public void add(Add_Customer_Object add_customer_object){
+        backUplist.add(add_customer_object);
+    }
+
+    public void filterCustomer(String s) {
+        int filterLength = s.length();
+        s = s.toLowerCase();
+        if (filterLength == 0 || filterLength < mCurrentfilterLength) {
+            mCurrentfilterLength = filterLength;
+            userModels.clear();
+            userModels.addAll(backUplist);
+            if (filterLength == 0) {
+                notifyDataSetChanged();
+                return;
+            }
+        }
+        int i = 0;
+        while (i < userModels.size()) {
+            if (!userModels.get(i).getCust_name().toLowerCase().contains(s) || !userModels.get(i).getCust_name().toLowerCase().startsWith(String.valueOf(s.charAt(0))))
+            //  || !mValues.get(i).getName().toLowerCase().startsWith(String.valueOf(s.charAt(0)))) {
+            {
+                userModels.remove(i);
+            } else {
+                i++;
+            }
+
+        }
+        mCurrentfilterLength = filterLength;
+        notifyDataSetChanged();
+    }
+
+
+    private class ViewHolder{
+        CircleImageView cust_adapter_image;
+        TextView cust_adapter_user_name;
+        TextView cust_adapter_user_app;
+        TextView cust_adapter_rupee;
+        TextView cust_adapter_block;
+        TextView flat_no;
     }
 }

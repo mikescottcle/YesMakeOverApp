@@ -3,6 +3,8 @@ package com.example.ast.carwash_nadeemahmed.Activities.Activities.UI;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.app.Dialog;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -11,8 +13,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.MainActivity;
@@ -33,6 +37,10 @@ public class Service_OnDemand_Fragment extends android.support.v4.app.Fragment {
     public static TextView ActionBartitle;
     public ImageView back_arrow;
     public Button btnOnRegular;
+    public Dialog filter_onDemand_service;
+    public EditText datefrom_ond_search,dateto_ond_search;
+    public Spinner spin_supervisor_ond,spin_boy_ond,spin_servicestatus_ond,spin_servicet_ond;
+    public Button apply_dialog_ond,cancle_dialog_ond;
 
 
     @Nullable
@@ -40,19 +48,7 @@ public class Service_OnDemand_Fragment extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.service_ondemad, null);
-
-        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar_outside);
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayOptions(0, android.support.v7.app.ActionBar.DISPLAY_SHOW_TITLE);
-
-        ActionBartitle = (TextView) toolbar.findViewById(R.id.main_appbar_textView);
-        ActionBartitle.setText("Service");
-
-        clist_Back_view = (View) view.findViewById(R.id.clist_back_view);
-        floatingActionButton = (ImageButton) view.findViewById(R.id.service_list_sort);
-        floatingMenuItem1 = (ImageView) view.findViewById(R.id.floatingMenuItem1);
-        floatingMenuItem2 = (ImageView) view.findViewById(R.id.floatingMenuItem2);
-        btnOnRegular = (Button)view.findViewById(R.id.on_regular);
+        initializeView(view);
 
 
         btnOnRegular.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +63,6 @@ public class Service_OnDemand_Fragment extends android.support.v4.app.Fragment {
         });
 
 
-        back_arrow = (ImageView) toolbar.findViewById(R.id.back_image);
 
         back_arrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,6 +86,7 @@ public class Service_OnDemand_Fragment extends android.support.v4.app.Fragment {
 
 //                animations();
                 customAnimations();
+                filter_onDemand_service.show();
 
             }
         });
@@ -107,6 +103,43 @@ public class Service_OnDemand_Fragment extends android.support.v4.app.Fragment {
         });
 
         return view;
+    }
+
+    private void initializeView(View view) {
+        View completeView = getActivity().getLayoutInflater().inflate(R.layout.filter_dialog_ond_service, null);
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar_outside);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayOptions(0, android.support.v7.app.ActionBar.DISPLAY_SHOW_TITLE);
+
+        ActionBartitle = (TextView) toolbar.findViewById(R.id.main_appbar_textView);
+        ActionBartitle.setText("Services");
+
+        clist_Back_view = (View) view.findViewById(R.id.clist_back_view);
+        floatingActionButton = (ImageButton) view.findViewById(R.id.service_list_sort);
+        floatingMenuItem1 = (ImageView) view.findViewById(R.id.floatingMenuItem1);
+        floatingMenuItem2 = (ImageView) view.findViewById(R.id.floatingMenuItem2);
+        btnOnRegular = (Button)view.findViewById(R.id.on_regular);
+        back_arrow = (ImageView) toolbar.findViewById(R.id.back_image);
+
+        filter_onDemand_service = new Dialog(getActivity());
+        filter_onDemand_service.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        filter_onDemand_service.setContentView(completeView);
+        datefrom_ond_search = (EditText)completeView.findViewById(R.id.datefrom_ond_search);
+        dateto_ond_search = (EditText)completeView.findViewById(R.id.dateto_ond_search);
+        spin_supervisor_ond = (Spinner)completeView.findViewById(R.id.spin_supervisor_ond);
+        spin_boy_ond = (Spinner)completeView.findViewById(R.id.spin_boy_ond);
+        spin_servicestatus_ond = (Spinner)completeView.findViewById(R.id.spin_servicestatus_ond);
+        spin_servicet_ond = (Spinner)completeView.findViewById(R.id.spin_servicet_ond);
+        cancle_dialog_ond = (Button)completeView.findViewById(R.id.cancle_dialog_ond);
+        apply_dialog_ond = (Button)completeView.findViewById(R.id.apply_dialog_ond);
+
+        cancle_dialog_ond.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filter_onDemand_service.dismiss();
+            }
+        });
+
     }
 
     public void customAnimations() {

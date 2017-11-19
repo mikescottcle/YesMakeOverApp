@@ -3,23 +3,33 @@ package com.example.ast.carwash_nadeemahmed.Activities.Activities.UI;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.CustomerActivity;
 import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.MainActivity;
 import com.example.ast.carwash_nadeemahmed.Activities.Activities.Model.Add_Customer_Object;
+import com.example.ast.carwash_nadeemahmed.Activities.Activities.Model.Subscription;
+import com.example.ast.carwash_nadeemahmed.Activities.Activities.Utils.AppLogs;
+import com.example.ast.carwash_nadeemahmed.Activities.Activities.Utils.FirebaseHandler;
 import com.example.ast.carwash_nadeemahmed.R;
+import com.google.android.flexbox.FlexboxLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * Created by AST on 9/18/2017.
@@ -36,6 +46,8 @@ public class Customer_Detail extends android.support.v4.app.Fragment {
     public ImageView back_arrow;
     public Add_Customer_Object add_customer_object;
     public TextView customer_subs_vehicle_rno,customer_subs_vehicle_make,parking_slot_detail,customer_app_detail,customer_block_detail,customer_email_detail,customer_flat_detail,customer_name_detail,customer_parking_detail,customer_phone_detail;
+    public Subscription subscription;
+    public LinearLayout subscription_container_detail;
 
     @Nullable
     @Override
@@ -52,13 +64,36 @@ public class Customer_Detail extends android.support.v4.app.Fragment {
             customer_flat_detail.setText(add_customer_object.getCust_flat());
             customer_name_detail.setText(add_customer_object.getCust_name());
             customer_parking_detail.setText(add_customer_object.getCust_parking());
-            customer_subs_vehicle_make.setText(add_customer_object.getSubscription().getVehicle_make());
-            customer_subs_vehicle_rno.setText(add_customer_object.getCust_parking_slot());
+        //    customer_subs_vehicle_make.setText(add_customer_object.getSubscription().getVehicle_make());
+         //   customer_subs_vehicle_rno.setText(add_customer_object.getCust_parking_slot());
             customer_phone_detail.setText(add_customer_object.getCust_mobile());
             parking_slot_detail.setText(add_customer_object.getCust_parking_slot());
 
 
         }
+
+        FirebaseHandler.getInstance().getCustomer_subscription().child(add_customer_object.getCust_Uid())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.getValue()!=null){
+                            AppLogs.d("TAG_SNAP",dataSnapshot.getValue().toString());
+                            int i = 0;
+                            for (DataSnapshot data : dataSnapshot.getChildren()) {
+                                subscription = data.getValue(Subscription.class);
+                                subscription_container_detail.addView(addCustomer_subs_vehicle_make(i,subscription));
+                             //   subscription_container_detail.addView(addcustomer_subs_vehicle_rno(i,subscription));
+                                i++;
+                            }
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
 
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -75,10 +110,14 @@ public class Customer_Detail extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View view) {
              //   customAnimations();
+                Payment_Successful payment_successful = new Payment_Successful();
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("object",add_customer_object);
+                payment_successful.setArguments(bundle);
                 getFragmentManager().beginTransaction()
                         .setCustomAnimations(R.anim.slide_left, R.anim.slide_out_left, R.anim.slide_right, R.anim.slide_out_right)
                         .addToBackStack(null)
-                        .add(R.id.customer_container, new Payment_Successful()).commit();
+                        .add(R.id.customer_container,payment_successful).commit();
             }
         });
 
@@ -112,12 +151,28 @@ public class Customer_Detail extends android.support.v4.app.Fragment {
         return view;
     }
 
+    private View addCustomer_subs_vehicle_make(int i, Subscription subscription) {
+        LayoutInflater inflater = LayoutInflater.from(getActivity());
+        final LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.cust_detail_subs_container, null, false);
+
+        layout.setTag(subscription);
+
+       customer_subs_vehicle_make  = (TextView)layout.findViewById(R.id.customer_subs_vehicle_make);
+        customer_subs_vehicle_rno  = (TextView)layout.findViewById(R.id.customer_subs_vehicle_rno);
+
+
+        customer_subs_vehicle_make.setText(subscription.getVehicle_make());
+        customer_subs_vehicle_rno.setText(subscription.getVehicle_Reg_no());
+
+        return layout;
+    }
+
     private void initializeView(View view) {
         Toolbar toolbar= (Toolbar)view.findViewById(R.id.toolbar_outside);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayOptions(0, android.support.v7.app.ActionBar.DISPLAY_SHOW_TITLE);
         back_arrow = (ImageView)toolbar.findViewById(R.id.back_image);
-
+        subscription_container_detail = (LinearLayout)view.findViewById(R.id.subscription_container_detail);
         ActionBartitle = (TextView)toolbar.findViewById(R.id.main_appbar_textView);
         ActionBartitle.setText("Customers Details");
         clist_Back_view = (View)view.findViewById(R.id.clist_back_view);
@@ -133,8 +188,7 @@ public class Customer_Detail extends android.support.v4.app.Fragment {
         customer_name_detail  = (TextView)view.findViewById(R.id.customer_name_detail);
         customer_parking_detail  = (TextView)view.findViewById(R.id.customer_parking_detail);
         customer_phone_detail  = (TextView)view.findViewById(R.id.customer_phone_detail);
-        customer_subs_vehicle_make  = (TextView)view.findViewById(R.id.customer_subs_vehicle_make);
-        customer_subs_vehicle_rno  = (TextView)view.findViewById(R.id.customer_subs_vehicle_rno);
+
 
 
 

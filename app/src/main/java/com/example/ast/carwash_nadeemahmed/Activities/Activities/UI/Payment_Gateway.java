@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.MainActivity;
+import com.example.ast.carwash_nadeemahmed.Activities.Activities.Activities.ServiceActivity;
 import com.example.ast.carwash_nadeemahmed.R;
 
 /**
@@ -38,7 +39,7 @@ public class Payment_Gateway extends android.support.v4.app.Fragment {
         back_arrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.getInstance().onBackPressed();
+                ServiceActivity.getInstance().onBackPressed();
             }
         });
         return view;
